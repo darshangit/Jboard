@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #cfd2da;
+    background-color: #252830;
+    padding-top: 40px;
+}
+
+.navbar-default {
+    background-color: #252830;
+    border-color: #252830;
+    border-top-color: rgb(37, 40, 48);
+    border-right-color: rgb(37, 40, 48);
+    border-bottom-color: rgb(37, 40, 48);
+    border-left-color: rgb(37, 40, 48);
+}
+
+.navbar-default .navbar-brand {
+    color: #00c2ff;
+}
+
+.mycomment {
+    color: #fff;
+    background-color: #252830;
+}
+
+.mySprint {
+    color: #fff;
+    background-color: #252830;
+}
+
+.myAddon {
+    background-color: #cfd2da
+}
+
+.myRow {
+    background-color:#333742;
+}
+
+textarea {
+resize: vertical;
+}

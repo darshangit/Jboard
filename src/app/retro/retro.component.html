@@ -1,0 +1,63 @@
+<div class="container-fluid">
+
+    <form [formGroup]="retroForm" (ngSubmit)="retroSubmit(retroForm.value)" autocomplete="off">
+        <h1>Retro
+            <div class=" col-md-1 input-group">
+                <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
+                <input id="text" type="text" class="form-control mySprint" name="email" placeholder="Sprint Number">
+            </div>
+        </h1>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-success">Start</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="startComment"></textarea>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-danger">Stop</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="stopComment"></textarea>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-info">Continue</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="continueComment"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-success">More</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="moreComment"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-danger">Less</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="lessComment"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-lg btn-pill btn-primary">Action Items</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="5" id="comment" formControlName="actionComment"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-lg btn-warning pull-right">End Retro</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <app-retro-history></app-retro-history>
+</div>
