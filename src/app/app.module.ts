@@ -7,12 +7,15 @@ import { appRoutes } from './routes';
 import { RetroComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RetroService } from './service/retro.services';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
  ],
@@ -22,7 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RetroComponent,
     RetroHistoryComponent
   ],
-  providers: [],
+  providers: [
+    RetroService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

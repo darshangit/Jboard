@@ -42,3 +42,10 @@ body {
 textarea {
 resize: vertical;
 }
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #333742;
+    opacity: 1;
+}
+
+.mystrip:nth-child(even){background-color: #333742}
