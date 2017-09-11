@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <h1>Leaves + Trainings</h1>
+
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table">
+                <tr>
+                    <th class="myTh"><span class="glyphicon glyphicon-user"></span></th>
+                    <th class="myTh"><span class="glyphicon glyphicon-question-sign"></span></th>
+                    <th class="myTh"><span class="glyphicon glyphicon-calendar">From</span></th>
+                    <th class="myTh"><span class="glyphicon glyphicon-calendar">To</span></th>
+                    <th class="myTh"><span class="glyphicon glyphicon-info-sign"></span></th>
+                    <th class="myTh"><span class="glyphicon glyphicon-ok"></span></th>
+                </tr>
+
+                <tbody *ngFor="let number of formArray">
+                    <tr [formGroup]="leavesForm" (ngSubmit)="leavesSubmit(leavesForm.value)" autocomplete="off">
+                        <td>
+                            <div class="form-group col-md-pull-4">
+                                <select class="form-control" id="select" formControlName="personName">
+                                      <option>Darshan</option>
+                                      <option>2</option>
+                                      <option>3</option>
+                                      <option>4</option>
+                                    </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm" data-toggle="buttons">
+                                <label class="btn btn-success" (click)="leavesForm.value.type='Leaves'"><input type="radio" value="'Leaves'" formControlName="type">Leaves</label>
+                                <label class="btn btn-success" (click)="leavesForm.value.type='Trainings'"><input type="radio" value="'Trainings'" formControlName="type">Trainings</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group col-md-pull-6 pull-left">
+                                <input type="date" class="form-control" formControlName="fromDate">
+                            </div>
+                            <td>
+                                <div class="form-group col-md-pull-6 pull-left">
+                                    <input type="date" class="form-control" formControlName="fromDate">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-6 input-group">
+                                    <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
+                                    <input id="text" type="text" class="form-control mySprint" name="sprintNo" formControlName="noOfDays" placeholder="Number of Days">
+                                </div>
+                            </td>
+                            <td>
+                                <button type="submit" (click)="leavesSubmit(leavesForm.value)" class="btn btn-pill btn-danger">Submit</button>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

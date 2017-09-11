@@ -1,7 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">JBoard</a>
+        <a class="navbar-brand" [routerLink]="['/app-retro']">JBoard</a>
       </div>
+
+      <ul class="nav navbar-nav pull-right">
+        <li><a  [routerLink]="['/app-leavestrainings']">Leaves-Trainings</a></li>
+      </ul>
     </div>
   </nav>

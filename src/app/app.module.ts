@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
-import { RetroComponent } from './index';
+import { RetroComponent, LeavesTrainingComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -23,7 +23,8 @@ import { HttpModule } from '@angular/http';
     AppComponent,
     AppNavBarComponent,
     RetroComponent,
-    RetroHistoryComponent
+    RetroHistoryComponent,
+    LeavesTrainingComponent
   ],
   providers: [
     RetroService

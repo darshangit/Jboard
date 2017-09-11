@@ -49,3 +49,17 @@ resize: vertical;
 }
 
 .mystrip:nth-child(even){background-color: #333742}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #00b6ff;
+    background-color: transparent;
+}
+
+.myTh {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size: large;
+    color: #FFFFFF;
+}
