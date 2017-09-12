@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1>Leaves + Trainings</h1>
+    <h1>Leaves + Trainings <button type="submit" (click)="addRow()" class="btn btn-pill btn-danger"><span class="glyphicon glyphicon-plus"></span></button></h1>
 
     <div class="row">
         <div class="col-md-12 table-responsive">
@@ -15,21 +15,19 @@
 
                 <tbody *ngFor="let number of formArray">
                     <tr [formGroup]="leavesForm" (ngSubmit)="leavesSubmit(leavesForm.value)" autocomplete="off">
+                            
                         <td>
                             <div class="form-group col-md-pull-4">
                                 <select class="form-control" id="select" formControlName="personName">
-                                      <option>Darshan</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
+                                      <option></option>
+                                      <option *ngFor="let user of userList">{{user}}</option>
                                     </select>
                             </div>
                         </td>
+
                         <td>
-                            <div class="btn-group btn-group-sm" data-toggle="buttons">
-                                <label class="btn btn-success" (click)="leavesForm.value.type='Leaves'"><input type="radio" value="'Leaves'" formControlName="type">Leaves</label>
-                                <label class="btn btn-success" (click)="leavesForm.value.type='Trainings'"><input type="radio" value="'Trainings'" formControlName="type">Trainings</label>
-                            </div>
+                            <label class="btn btn-success"><input type="radio" value="Trainings" formControlName="type">Trainings</label>
+                            <label class="btn btn-success"><input type="radio" value="Leaves" formControlName="type">Leaves</label>
                         </td>
                         <td>
                             <div class="form-group col-md-pull-6 pull-left">
@@ -37,13 +35,13 @@
                             </div>
                             <td>
                                 <div class="form-group col-md-pull-6 pull-left">
-                                    <input type="date" class="form-control" formControlName="fromDate">
+                                    <input type="date" class="form-control" formControlName="toDate">
                                 </div>
                             </td>
                             <td>
                                 <div class="col-md-6 input-group">
                                     <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
-                                    <input id="text" type="text" class="form-control mySprint" name="sprintNo" formControlName="noOfDays" placeholder="Number of Days">
+                                    <input id="text" type="text" class="form-control mySprint" name="noOfDays" formControlName="noOfDays" placeholder="Number of Days">
                                 </div>
                             </td>
                             <td>
