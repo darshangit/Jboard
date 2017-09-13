@@ -4,7 +4,7 @@
         <h1>Retro
             <div class=" col-md-1 input-group">
                 <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
-                <input id="text" type="text" class="form-control mySprint" name="sprintNo" formControlName="sprintNo" placeholder="Sprint Number">
+                <input id="text" type="text" class="form-control mySprint" name="sprintNo" formControlName="sprintNo" placeholder="Sprint">
             </div>
         </h1>
 
@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-lg btn-warning pull-right">End Retro</button>
+                <button type="submit"  [disabled]="retroForm.invalid" class="btn btn-lg btn-warning pull-right">End Retro</button>
             </div>
         </div>
     </form>

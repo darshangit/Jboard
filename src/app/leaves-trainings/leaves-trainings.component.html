@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1>Leaves + Trainings <button type="submit" (click)="addRow()" class="btn btn-pill btn-danger"><span class="glyphicon glyphicon-plus"></span></button></h1>
+    <h1>Leaves + Trainings</h1>
 
     <div class="row">
         <div class="col-md-12 table-responsive">
@@ -12,43 +12,63 @@
                     <th class="myTh"><span class="glyphicon glyphicon-info-sign"></span></th>
                     <th class="myTh"><span class="glyphicon glyphicon-ok"></span></th>
                 </tr>
-
+                <tbody *ngFor="let count of countArray">
+                        <tr [formGroup]="leavesForm" (ngSubmit)="leavesSubmit(leavesForm.value)" autocomplete="off">
+                               
+                           <td>
+                               <div class="form-group col-md-pull-4">
+                                   <select class="form-control" id="select" formControlName="personName">
+                                         <option></option>
+                                         <option *ngFor="let user of userList">{{user}}</option>
+                                       </select>
+                               </div>
+                           </td>
+   
+                           <td>
+                               <label class="btn btn-success"><input type="radio" value="Trainings" formControlName="type">Trainings</label>
+                               <label class="btn btn-success"><input type="radio" value="Leaves" formControlName="type">Leaves</label>
+                           </td>
+                           <td>
+                               <div class="form-group col-md-pull-6 pull-left">
+                                   <input type="date" class="form-control" formControlName="fromDate">
+                               </div>
+                               <td>
+                                   <div class="form-group col-md-pull-6 pull-left">
+                                       <input type="date" class="form-control" formControlName="toDate">
+                                   </div>
+                               </td>
+                               <td>
+                                   <div class="col-md-6 input-group">
+                                       <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
+                                       <input id="text" type="text" class="form-control mySprint" name="noOfDays" formControlName="noOfDays" placeholder="Total Days">
+                                   </div>
+                               </td>
+                               <td>
+                                   <button type="submit" [disabled]="leavesForm.invalid" (click)="leavesSubmit(leavesForm.value)" class="btn btn-pill btn-danger">Submit</button>
+                               </td>
+                       </tr>
+                   </tbody>
                 <tbody *ngFor="let number of formArray">
-                    <tr [formGroup]="leavesForm" (ngSubmit)="leavesSubmit(leavesForm.value)" autocomplete="off">
-                            
+                    <td>
+                            <h4><label class="label label-primary myTr1">{{number.name}}</label></h4>
+                    </td>
+                    <td>
+                            <h4><label class="label label-default myTr2">{{number.type}}</label></h4>
+                    </td>
+                    <td>
+                            <h4><label class="label label-success myTr2">{{number.fromDate | date:'longDate'}}</label></h4>
                         <td>
-                            <div class="form-group col-md-pull-4">
-                                <select class="form-control" id="select" formControlName="personName">
-                                      <option></option>
-                                      <option *ngFor="let user of userList">{{user}}</option>
-                                    </select>
-                            </div>
+                              <h4><label class="label label-success myTr2">{{number.toDate | date:'longDate'}}</label></h4>
+                        </td>
+                        <td>
+                             <h4><label class="label label-default myTr2">{{number.totalDays}}</label></h4>
+                        </td>
+                        <td>
+                                <h4><span class="glyphicon glyphicon-ok"></span></h4>
                         </td>
 
-                        <td>
-                            <label class="btn btn-success"><input type="radio" value="Trainings" formControlName="type">Trainings</label>
-                            <label class="btn btn-success"><input type="radio" value="Leaves" formControlName="type">Leaves</label>
-                        </td>
-                        <td>
-                            <div class="form-group col-md-pull-6 pull-left">
-                                <input type="date" class="form-control" formControlName="fromDate">
-                            </div>
-                            <td>
-                                <div class="form-group col-md-pull-6 pull-left">
-                                    <input type="date" class="form-control" formControlName="toDate">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-md-6 input-group">
-                                    <span class="input-group-addon myAddon"><i class="glyphicon glyphicon-dashboard"></i></span>
-                                    <input id="text" type="text" class="form-control mySprint" name="noOfDays" formControlName="noOfDays" placeholder="Number of Days">
-                                </div>
-                            </td>
-                            <td>
-                                <button type="submit" (click)="leavesSubmit(leavesForm.value)" class="btn btn-pill btn-danger">Submit</button>
-                            </td>
-                    </tr>
                 </tbody>
+                
             </table>
         </div>
     </div>

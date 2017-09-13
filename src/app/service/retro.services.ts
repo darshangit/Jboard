@@ -29,11 +29,13 @@ export class RetroService {
         }).catch(this.handleError);
     }
 
-    saveLeavesAndTrainings(leaveTrainings): void {
+    saveLeavesAndTrainings(leaveTrainings): Observable<LeavesAndTrainings[]>  {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        this.http.post('/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop).subscribe();
+        return this.http.post('/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop).map((response: Response) => {
+            return response.json() as LeavesAndTrainings[];
+        }).catch(this.handleError);
     }
 
     getAllLeavesAndTrainings(): Observable<LeavesAndTrainings[]>{

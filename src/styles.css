@@ -63,3 +63,13 @@ resize: vertical;
     font-size: large;
     color: #FFFFFF;
 }
+
+.myTr1{
+    background-color: #2a7890;
+    font-weight: 500;
+}
+
+.myTr2{
+    background-color: #424650;
+    font-weight: 500;
+}

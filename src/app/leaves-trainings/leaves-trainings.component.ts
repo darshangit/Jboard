@@ -11,17 +11,16 @@ import { LeavesAndTrainings } from '../model/leavesTrainings.model'
 export class LeavesTrainingComponent implements OnInit {
 
     formArray = [];
-    counter = 0;
     leavesForm: FormGroup;
     personName: FormControl;
     type: FormControl;
     fromDate: FormControl;
     toDate: FormControl;
     noOfDays: FormControl;
-    key: FormControl;
     stringtype: string;
 
     userList = [];
+    countArray = [1];
 
     constructor(private retroServices: RetroService) {
         this.retroServices.getAllLeavesAndTrainings().subscribe(response => {
@@ -34,13 +33,13 @@ export class LeavesTrainingComponent implements OnInit {
     }
 
     initialize(): void {
-        this.userList = ['Darshan', 'Sukeerti', 'Abhilash' ];
+        this.userList = ['Avinash', 'Abhilash', 'Amit', 'Biswajit', 'Basavaraju', 'Darshan',
+        'James', 'Vinay', 'Prashant', 'Sukeerti', 'Gils', 'Gaurav' ];
         this.personName = new FormControl('', Validators.required );
         this.type = new FormControl('', Validators.required );
-        this.fromDate = new FormControl('2017-08-01', Validators.required );
-        this.toDate = new FormControl('2017-08-01', Validators.required );
+        this.fromDate = new FormControl('', Validators.required );
+        this.toDate = new FormControl('', Validators.required );
         this.noOfDays = new FormControl('', Validators.required );
-        this.key = new FormControl('', Validators.required );
 
         this.leavesForm = new FormGroup({
             personName: this.personName,
@@ -48,12 +47,10 @@ export class LeavesTrainingComponent implements OnInit {
             fromDate: this.fromDate,
             toDate: this.toDate,
             noOfDays: this.noOfDays,
-            key: this.key
         });
     }
 
     leavesSubmit(formValues) {
-        console.log('formValues', formValues )
         const leavesAndTrainings: LeavesAndTrainings = {
             UUID: null,
             type: formValues.type,
@@ -63,12 +60,12 @@ export class LeavesTrainingComponent implements OnInit {
             fromDate: formValues.fromDate,
             createTimeStamp: new Date()
         };
-        this.retroServices.saveLeavesAndTrainings(leavesAndTrainings);
+        this.retroServices.saveLeavesAndTrainings(leavesAndTrainings).subscribe(resp => {
+            this.initialize();
+            this.formArray = resp;
+        });
     }
 
-    addRow() {
-        this.formArray.push(1);
-        this.counter = this.formArray.length;
-    }
+
 
 }

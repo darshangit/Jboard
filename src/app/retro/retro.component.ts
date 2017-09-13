@@ -26,12 +26,12 @@ export class RetroComponent implements OnInit {
     }
 
     initialize(): void {
-        this.startComment = new FormControl('', Validators.required );
-        this.stopComment = new FormControl('', Validators.required );
-        this.continueComment = new FormControl('', Validators.required );
-        this.moreComment = new FormControl('', Validators.required );
-        this.lessComment = new FormControl('', Validators.required );
-        this.actionComment = new FormControl('', Validators.required );
+        this.startComment = new FormControl('');
+        this.stopComment = new FormControl('');
+        this.continueComment = new FormControl('');
+        this.moreComment = new FormControl('' );
+        this.lessComment = new FormControl('');
+        this.actionComment = new FormControl('');
         this.sprintNo = new FormControl('', Validators.required );
 
         this.retroForm = new FormGroup({
