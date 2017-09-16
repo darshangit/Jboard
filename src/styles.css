@@ -76,3 +76,63 @@ resize: vertical;
     background-color: #424650;
     font-weight: 500;
 }
+
+.fc button, .fc table, body .fc {
+    font-size: x-large;
+}
+
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+    float: right;
+    font-size: x-large;
+}
+
+.fc td, .fc th {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0;
+    vertical-align: top;
+    height: 23px;
+}
+
+.ui-widget-header {
+    border: 1px solid #d9d9d9;
+    background: #f6f7f9;
+    color: #1b1d1f;
+    font-weight: 600;
+    font-size: small;
+}
+
+.fc-day-grid-event .fc-content {
+    white-space: nowrap;
+    overflow: hidden;
+    height: 16px;
+}
+
+.ui-widget .fc-event {
+    color: #fff;
+    font-weight: 400;
+    font-size: small;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: larger;
+}
+
+/* .ui-widget-header {
+    border: 1px solid #d9d9d9;
+    background: #f6f7f9;
+    color: #1b1d1f;
+    font-weight: 600;
+    font-size: small;
+    width: 204px;
+} */
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: .2em 0;
+    width: 200px;
+}

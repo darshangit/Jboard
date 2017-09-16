@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation  } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { RetroService } from '../service/retro.services';
 import { LeavesAndTrainings } from '../model/leavesTrainings.model';
@@ -6,6 +6,7 @@ import { LeavesAndTrainings } from '../model/leavesTrainings.model';
 @Component({
     selector: 'app-leavestrainings',
     templateUrl: './leaves-trainings.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class LeavesTrainingComponent implements OnInit {
 
@@ -104,7 +105,7 @@ export class LeavesTrainingComponent implements OnInit {
         console.log('handleDayClick');
 
         this.event = new MyEvent();
-        // this.event.start = e.date.format();
+        this.event.start = e.date.format();
         this.dialogVisible = true;
         this.cd.detectChanges();
     }

@@ -11,7 +11,8 @@ import { RetroService } from './service/retro.services';
 import { HttpModule } from '@angular/http';
 import {ScheduleModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { InputTextModule, DataTableModule, ButtonModule, DialogModule } from 'primeng/primeng';
+import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
+  CheckboxModule, TabViewModule, CodeHighlighterModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -21,10 +22,13 @@ import { InputTextModule, DataTableModule, ButtonModule, DialogModule } from 'pr
     HttpModule,
     ReactiveFormsModule,
     ScheduleModule,
-    InputTextModule,
-    DataTableModule,
-    ButtonModule,
     DialogModule,
+    InputTextModule,
+    CalendarModule,
+    CheckboxModule,
+    ButtonModule,
+    TabViewModule,
+    CodeHighlighterModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [
