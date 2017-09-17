@@ -2,7 +2,7 @@
     <h1>Leaves + Trainings</h1>
     <div class="container content-section implementation">
         <p-schedule [events]="events" [header]="headerConfig" defaultDate="2017-09-16" [eventLimit]="100" [editable]="true" (onDayClick)="handleDayClick($event)"
-            (onEventClick)="handleEventClick($event)" [resizable]="true"></p-schedule>
+            (onEventClick)="handleEventClick($event)" [resizable]="true" [height]="auto" ></p-schedule>
 
         <p-dialog header="LT Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
             [style]="{'overflow':'visible'}" [resizable]="false">
@@ -24,12 +24,14 @@
                         <p-calendar [(ngModel)]="event.start" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
                     </div>
                 </div>
+                <br>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4"><label for="end">To</label></div>
                     <div class="ui-grid-col-8">
                         <p-calendar [(ngModel)]="event.end" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
                     </div>
                 </div>
+                <br>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4"><label for="allday">Type</label></div>
                     <div class="ui-grid-col-8">

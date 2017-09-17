@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RetroService } from '../service/retro.services';
 import { LeavesAndTrainings } from '../model/leavesTrainings.model';
-
+import * as moment from 'moment';
 @Component({
     selector: 'app-ltcalendar',
     templateUrl: './ltcalendar.component.html'
@@ -30,14 +30,19 @@ export class LTCalendarComponent implements OnInit {
                 this.responseArray = response;
                 this.events = [];
                 this.responseArray.forEach(element => {
+                    let color = '#5cb85c';
+                    if ( element.type === 'Leaves') {
+                        color = '#d9534f';
+                    }
                     const lt: MyEvent = {
-                        id: Number(element.uuid),
+                        id: Number(element.ltUuid),
                         title: element.name + '-' + element.type,
                         name: element.name,
                         start: element.fromDate,
-                        end: element.toDate,
+                        end: moment(element.toDate).add(1, 'd').toDate(),
                         type: element.type,
-                        allDay: true
+                        allDay: true,
+                        color: color
                     };
                     this.events.push(lt);
             });
@@ -52,21 +57,28 @@ export class LTCalendarComponent implements OnInit {
     }
 
     handleEventClick(e) {
-        this.event = new MyEvent();
-        this.event.title = e.calEvent.title;
 
-        const start = e.calEvent.start;
-        const end = e.calEvent.end;
-        if (e.view.name === 'month') {
-            start.stripTime();
+        const index: number = this.findEventIndexById(e.calEvent.id);
+        if (index >= 0) {
+           this.event = this.events[index];
+        } else {
+            // this.event = new MyEvent();
+            // this.event.title = e.calEvent.title;
+
+            // const start = e.calEvent.start;
+            // const end = e.calEvent.end;
+            // if (e.view.name === 'month') {
+            //     start.stripTime();
+            // }
+
+            // if (end) {
+            //     end.stripTime();
+            //     this.event.end = end.format();
+            // }
+            // this.event.id = e.calEvent.id;
+            // this.event.start = start.format();
         }
 
-        if (end) {
-            end.stripTime();
-            this.event.end = end.format();
-        }
-        this.event.id = e.calEvent.id;
-        this.event.start = start.format();
         this.dialogVisible = true;
     }
 
@@ -80,7 +92,7 @@ export class LTCalendarComponent implements OnInit {
                     type: this.event.type,
                     totalDays: this.event.id,
                     name: this.event.name,
-                    toDate: this.event.end,
+                    toDate: moment(this.event.end).add(1, 'd').toDate(),
                     fromDate: this.event.start,
                     createTimeStamp: new Date()
                 };
@@ -89,14 +101,19 @@ export class LTCalendarComponent implements OnInit {
                     this.responseArray = resp;
                     this.events = [];
                     this.responseArray.forEach(element => {
+                        let color = '#5cb85c';
+                        if ( element.type === 'Leaves') {
+                            color = '#d9534f';
+                        }
                         const lt: MyEvent = {
-                            id: Number(element.uuid),
+                            id: Number(element.ltUuid),
                             title: element.name + '-' + element.type,
                             name: element.name,
                             start: element.fromDate,
                             end: element.toDate,
                             type: element.type,
-                            allDay: true
+                            allDay: true,
+                            color: color
                         };
                         this.events.push(lt);
                     });
@@ -109,7 +126,7 @@ export class LTCalendarComponent implements OnInit {
                 type: this.event.type,
                 totalDays: 0,
                 name: this.event.name,
-                toDate: this.event.end,
+                toDate: moment(this.event.end).add(1, 'd').toDate(),
                 fromDate: this.event.start,
                 createTimeStamp: new Date()
             };
@@ -117,14 +134,19 @@ export class LTCalendarComponent implements OnInit {
                 this.responseArray = resp;
                 this.events = [];
                 this.responseArray.forEach(element => {
+                    let color = '#5cb85c';
+                    if ( element.type === 'Leaves') {
+                        color = '#d9534f';
+                    }
                     const lt: MyEvent = {
-                        id: Number(element.uuid),
+                        id: Number(element.ltUuid),
                         title: element.name + '-' + element.type,
                         name: element.name,
                         start: element.fromDate,
                         end: element.toDate,
                         type: element.type,
-                        allDay: true
+                        allDay: true,
+                        color: color
                     };
                     this.events.push(lt);
                 });
@@ -140,14 +162,19 @@ export class LTCalendarComponent implements OnInit {
             this.responseArray = resp;
             this.events = [];
             this.responseArray.forEach(element => {
+                let color = '#5cb85c';
+                if ( element.type === 'Leaves') {
+                    color = '#d9534f';
+                }
                 const lt: MyEvent = {
-                    id: Number(element.UUID),
+                    id: Number(element.ltUuid),
                     title: element.name + '-' + element.type,
                     name: element.name,
                     start: element.fromDate,
                     end: element.toDate,
                     type: element.type,
-                    allDay: true
+                    allDay: true,
+                    color: color
                 };
                 this.events.push(lt);
             });
@@ -164,7 +191,6 @@ export class LTCalendarComponent implements OnInit {
                 break;
             }
         }
-
         return index;
     }
 
@@ -178,5 +204,6 @@ export class MyEvent {
     end: Date;
     type: string;
     allDay = true;
+    color: string;
 }
 
