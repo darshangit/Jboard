@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { RetroService } from '../service/retro.services';
+import { LeavesAndTrainings } from '../model/leavesTrainings.model';
 
 @Component({
     selector: 'app-ltcalendar',
@@ -14,46 +16,35 @@ export class LTCalendarComponent implements OnInit {
     headerConfig: any;
     userList = [];
 
-    constructor(private cd: ChangeDetectorRef) {}
+    responseArray = [];
+    constructor(private cd: ChangeDetectorRef, private retroServices: RetroService) {}
     ngOnInit(): void {
         this.userList = ['Avinash', 'Abhilash', 'Amit', 'Biswajit', 'Basavaraju', 'Darshan',
         'James', 'Vinay', 'Prashant', 'Sukeerti', 'Gils', 'Gaurav'];
-
-        this.events = [
-            {
-                'title': 'All Day Event',
-                'start': '2016-01-01'
-            },
-            {
-                'title': 'Long Event',
-                'start': '2016-01-07',
-                'end': '2016-01-10'
-            },
-            {
-                'title': 'Repeating Event',
-                'start': '2016-01-09T16:00:00'
-            },
-            {
-                'title': 'Repeating Event',
-                'start': '2016-01-16T16:00:00'
-            },
-            {
-                'title': 'Conference',
-                'start': '2016-01-11',
-                'end': '2016-01-13'
-            }
-        ];
-
-        this.headerConfig = {
+           this.headerConfig = {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         };
+        this.retroServices.getAllLeavesAndTrainings().subscribe(response => {
+                this.responseArray = response;
+                this.events = [];
+                this.responseArray.forEach(element => {
+                    const lt: MyEvent = {
+                        id: Number(element.uuid),
+                        title: element.name + '-' + element.type,
+                        name: element.name,
+                        start: element.fromDate,
+                        end: element.toDate,
+                        type: element.type,
+                        allDay: true
+                    };
+                    this.events.push(lt);
+            });
+        });
     }
 
     handleDayClick(e) {
-        console.log('handleDayClick');
-
         this.event = new MyEvent();
         this.event.start = e.date.format();
         this.dialogVisible = true;
@@ -61,7 +52,6 @@ export class LTCalendarComponent implements OnInit {
     }
 
     handleEventClick(e) {
-        console.log('handleclick');
         this.event = new MyEvent();
         this.event.title = e.calEvent.title;
 
@@ -75,10 +65,8 @@ export class LTCalendarComponent implements OnInit {
             end.stripTime();
             this.event.end = end.format();
         }
-
         this.event.id = e.calEvent.id;
         this.event.start = start.format();
-        this.event.allDay = e.calEvent.allDay;
         this.dialogVisible = true;
     }
 
@@ -87,10 +75,60 @@ export class LTCalendarComponent implements OnInit {
             const index: number = this.findEventIndexById(this.event.id);
             if (index >= 0) {
                 this.events[index] = this.event;
+                const leavesAndTrainings: LeavesAndTrainings = {
+                    ltUuid: Number(this.event.id),
+                    type: this.event.type,
+                    totalDays: this.event.id,
+                    name: this.event.name,
+                    toDate: this.event.end,
+                    fromDate: this.event.start,
+                    createTimeStamp: new Date()
+                };
+
+                this.retroServices.saveLeavesAndTrainings(leavesAndTrainings).subscribe(resp => {
+                    this.responseArray = resp;
+                    this.events = [];
+                    this.responseArray.forEach(element => {
+                        const lt: MyEvent = {
+                            id: Number(element.uuid),
+                            title: element.name + '-' + element.type,
+                            name: element.name,
+                            start: element.fromDate,
+                            end: element.toDate,
+                            type: element.type,
+                            allDay: true
+                        };
+                        this.events.push(lt);
+                    });
+                });
+                this.event = null;
             }
         } else {
-            this.event.id = this.idGen++;
-            this.events.push(this.event);
+            const leavesAndTrainings: LeavesAndTrainings = {
+                ltUuid: Number(this.event.id),
+                type: this.event.type,
+                totalDays: 0,
+                name: this.event.name,
+                toDate: this.event.end,
+                fromDate: this.event.start,
+                createTimeStamp: new Date()
+            };
+            this.retroServices.saveLeavesAndTrainings(leavesAndTrainings).subscribe(resp => {
+                this.responseArray = resp;
+                this.events = [];
+                this.responseArray.forEach(element => {
+                    const lt: MyEvent = {
+                        id: Number(element.uuid),
+                        title: element.name + '-' + element.type,
+                        name: element.name,
+                        start: element.fromDate,
+                        end: element.toDate,
+                        type: element.type,
+                        allDay: true
+                    };
+                    this.events.push(lt);
+                });
+            });
             this.event = null;
         }
 
@@ -98,10 +136,23 @@ export class LTCalendarComponent implements OnInit {
     }
 
     deleteEvent() {
-        const index: number = this.findEventIndexById(this.event.id);
-        if (index >= 0) {
-            this.events.splice(index, 1);
-        }
+        this.retroServices.deleteLeaveAndTraining(this.event.id).subscribe(resp => {
+            this.responseArray = resp;
+            this.events = [];
+            this.responseArray.forEach(element => {
+                const lt: MyEvent = {
+                    id: Number(element.UUID),
+                    title: element.name + '-' + element.type,
+                    name: element.name,
+                    start: element.fromDate,
+                    end: element.toDate,
+                    type: element.type,
+                    allDay: true
+                };
+                this.events.push(lt);
+            });
+        });
+        this.event = null;
         this.dialogVisible = false;
     }
 
@@ -122,8 +173,10 @@ export class LTCalendarComponent implements OnInit {
 export class MyEvent {
     id: number;
     title: string;
-    start: string;
-    end: string;
-    allDay: string;
+    name: string;
+    start: Date;
+    end: Date;
+    type: string;
+    allDay = true;
 }
 

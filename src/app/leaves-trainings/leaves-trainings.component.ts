@@ -52,7 +52,7 @@ export class LeavesTrainingComponent implements OnInit {
 
     leavesSubmit(formValues) {
         const leavesAndTrainings: LeavesAndTrainings = {
-            UUID: null,
+            ltUuid: null,
             type: formValues.type,
             totalDays: formValues.noOfDays,
             name: formValues.personName,

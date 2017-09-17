@@ -183,3 +183,6 @@ label {
     margin: 0 0 0 -1px;
     font-size: medium;
 }
+.fc-sat, .fc-sun {
+    background-color: #343742;
+}

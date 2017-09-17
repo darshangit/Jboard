@@ -33,6 +33,8 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
+        console.log('saveLeavesAndTrainingssaveLeavesAndTrainingssaveLeavesAndTrainings', leaveTrainings);
+
         return this.http.post('/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop).map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
@@ -45,7 +47,15 @@ export class RetroService {
         return this.http.get('/jboard/leaves/getLeavesAndTrainings').map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
+    }
 
+    deleteLeaveAndTraining(uuid: number): Observable<LeavesAndTrainings[]>{
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const requestop = new RequestOptions({ headers });
+
+        return this.http.get('jboard/leaves/deleteLeaveAndTraining/' + uuid).map((response: Response) => {
+            return response.json() as LeavesAndTrainings[];
+        }).catch(this.handleError);
     }
 
     private handleError(error: Response) {

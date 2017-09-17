@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <h1>Leaves + Trainings</h1>
     <div class="container content-section implementation">
-        <p-schedule [events]="events" [header]="headerConfig" defaultDate="2017-09-16" [eventLimit]="4" [editable]="true" (onDayClick)="handleDayClick($event)"
-            (onEventClick)="handleEventClick($event)"></p-schedule>
+        <p-schedule [events]="events" [header]="headerConfig" defaultDate="2017-09-16" [eventLimit]="100" [editable]="true" (onDayClick)="handleDayClick($event)"
+            (onEventClick)="handleEventClick($event)" [resizable]="true"></p-schedule>
 
-        <p-dialog header="Event Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
+        <p-dialog header="LT Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
             [style]="{'overflow':'visible'}" [resizable]="false">
             <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="event">
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4"><label for="vin">Name</label></div>
                     <div class="ui-grid-col-8">
-                            <select class="form-control" id="select" [(ngModel)]="event.title">
-                                    <option></option>
+                            <select class="form-control" id="select" [(ngModel)]="event.name">
+                                    <option>{{event.name}}</option>
                                     <option *ngFor="let user of userList">{{user}}</option>
                                   </select>
                         <!-- <input pInputText id="title" [(ngModel)]="event.title" /> -->
@@ -33,8 +33,8 @@
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4"><label for="allday">Type</label></div>
                     <div class="ui-grid-col-8">
-                            <label class="btn btn-success"><input type="radio" value="Trainings" [(ngModel)]="event.allDay">Training</label>
-                            <label class="btn btn-danger"><input type="radio" value="Leaves" [(ngModel)]="event.allDay">Leave</label>
+                            <label class="btn btn-success"><input type="radio" value="Trainings" [(ngModel)]="event.type">Training</label>
+                            <label class="btn btn-danger"><input type="radio" value="Leaves" [(ngModel)]="event.type">Leave</label>
                     </div>
                 </div>
             </div>

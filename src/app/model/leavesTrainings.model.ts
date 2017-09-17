@@ -1,5 +1,5 @@
 export interface LeavesAndTrainings {
-    UUID: number;
+    ltUuid: number;
     name: string;
     type: string;
     fromDate: Date;
