@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
-import { RetroComponent, LeavesTrainingComponent } from './index';
+import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -36,7 +36,8 @@ import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarM
     AppNavBarComponent,
     RetroComponent,
     RetroHistoryComponent,
-    LeavesTrainingComponent
+    LeavesTrainingComponent,
+    LTCalendarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

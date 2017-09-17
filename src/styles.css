@@ -136,3 +136,50 @@ label {
     padding: .2em 0;
     width: 200px;
 }
+
+.ui-widget-content {
+    border: 1px solid #D5D5D5;
+    background: #252830;
+    color: #ffffff;
+  }
+
+  .ui-state-highlight {
+    border-color: #156090;
+    background: #186ba0;
+    color: #FFFFFF;
+}
+
+.ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 1em 1.5em;
+    width: 300px;
+}
+
+.ui-datepicker.ui-widget .ui-datepicker-calendar thead th {
+    background-color: #2399e5;
+    padding: 8px;
+}
+
+.ui-datepicker.ui-widget {
+    padding: 0;
+    width: 353px;
+    font-size: medium;
+}
+
+.ui-datepicker.ui-widget .ui-datepicker-header {
+    border-radius: 0px;
+    border-top: 0 none;
+    border-left: 0 none;
+    border-right: 0 none;
+    width: 350px;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+.fc .fc-button-group>* {
+    float: left;
+    margin: 0 0 0 -1px;
+    font-size: medium;
+}
