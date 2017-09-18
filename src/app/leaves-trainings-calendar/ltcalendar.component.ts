@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RetroService } from '../service/retro.services';
 import { LeavesAndTrainings } from '../model/leavesTrainings.model';
 import * as moment from 'moment';
+import * as $ from 'jquery';
 @Component({
     selector: 'app-ltcalendar',
     templateUrl: './ltcalendar.component.html'
@@ -17,6 +18,7 @@ export class LTCalendarComponent implements OnInit {
     userList = [];
 
     responseArray = [];
+    holidayArray = [];
     constructor(private cd: ChangeDetectorRef, private retroServices: RetroService) {}
     ngOnInit(): void {
         this.userList = ['Avinash', 'Abhilash', 'Amit', 'Biswajit', 'Basavaraju', 'Darshan',
@@ -26,6 +28,10 @@ export class LTCalendarComponent implements OnInit {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         };
+        this.retroServices.getAllHolidays().subscribe(respo => {
+            this.holidayArray = respo;
+            this.populateHolidays();
+        });
         this.retroServices.getAllLeavesAndTrainings().subscribe(response => {
                 this.responseArray = response;
                 this.events = [];
@@ -52,8 +58,15 @@ export class LTCalendarComponent implements OnInit {
     handleDayClick(e) {
         this.event = new MyEvent();
         this.event.start = e.date.format();
+        this.event.end = this.event.start;
         this.dialogVisible = true;
         this.cd.detectChanges();
+    }
+
+    populateHolidays() {
+        this.holidayArray.forEach(holiday => {
+            $('td[data-date=' + holiday.holidayDate + ']').text(holiday.holidayname).addClass('holiday');
+        });
     }
 
     handleEventClick(e) {
@@ -61,6 +74,7 @@ export class LTCalendarComponent implements OnInit {
         const index: number = this.findEventIndexById(e.calEvent.id);
         if (index >= 0) {
            this.event = this.events[index];
+           this.event.end = moment(this.event.end).add(-1, 'd').toDate();
         } else {
             // this.event = new MyEvent();
             // this.event.title = e.calEvent.title;
@@ -92,7 +106,7 @@ export class LTCalendarComponent implements OnInit {
                     type: this.event.type,
                     totalDays: this.event.id,
                     name: this.event.name,
-                    toDate: moment(this.event.end).add(1, 'd').toDate(),
+                    toDate: this.event.end,
                     fromDate: this.event.start,
                     createTimeStamp: new Date()
                 };
@@ -110,7 +124,7 @@ export class LTCalendarComponent implements OnInit {
                             title: element.name + '-' + element.type,
                             name: element.name,
                             start: element.fromDate,
-                            end: element.toDate,
+                            end: moment(element.toDate).add(1, 'd').toDate(),
                             type: element.type,
                             allDay: true,
                             color: color
@@ -126,7 +140,7 @@ export class LTCalendarComponent implements OnInit {
                 type: this.event.type,
                 totalDays: 0,
                 name: this.event.name,
-                toDate: moment(this.event.end).add(1, 'd').toDate(),
+                toDate: this.event.end,
                 fromDate: this.event.start,
                 createTimeStamp: new Date()
             };
@@ -143,7 +157,7 @@ export class LTCalendarComponent implements OnInit {
                         title: element.name + '-' + element.type,
                         name: element.name,
                         start: element.fromDate,
-                        end: element.toDate,
+                        end: moment(element.toDate).add(1, 'd').toDate(),
                         type: element.type,
                         allDay: true,
                         color: color
@@ -171,7 +185,7 @@ export class LTCalendarComponent implements OnInit {
                     title: element.name + '-' + element.type,
                     name: element.name,
                     start: element.fromDate,
-                    end: element.toDate,
+                    end: moment(element.toDate).add(1, 'd').toDate(),
                     type: element.type,
                     allDay: true,
                     color: color
@@ -192,6 +206,10 @@ export class LTCalendarComponent implements OnInit {
             }
         }
         return index;
+    }
+
+    eventAfterAllRenderer(event) {
+       this.populateHolidays();
     }
 
 }

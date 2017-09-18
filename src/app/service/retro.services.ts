@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
 import { RetroModel } from '../model/retro.model';
-import { LeavesAndTrainings } from '../model/leavesTrainings.model'
+import { LeavesAndTrainings } from '../model/leavesTrainings.model';
+import { Holidays } from '../model/holiday.model';
 
 @Injectable()
 export class RetroService {
@@ -29,7 +30,7 @@ export class RetroService {
         }).catch(this.handleError);
     }
 
-    saveLeavesAndTrainings(leaveTrainings): Observable<LeavesAndTrainings[]>  {
+    saveLeavesAndTrainings(leaveTrainings): Observable<LeavesAndTrainings[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
@@ -40,7 +41,7 @@ export class RetroService {
         }).catch(this.handleError);
     }
 
-    getAllLeavesAndTrainings(): Observable<LeavesAndTrainings[]>{
+    getAllLeavesAndTrainings(): Observable<LeavesAndTrainings[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
@@ -49,12 +50,21 @@ export class RetroService {
         }).catch(this.handleError);
     }
 
-    deleteLeaveAndTraining(uuid: number): Observable<LeavesAndTrainings[]>{
+    deleteLeaveAndTraining(uuid: number): Observable<LeavesAndTrainings[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
         return this.http.get('jboard/leaves/deleteLeaveAndTraining/' + uuid).map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
+        }).catch(this.handleError);
+    }
+
+    getAllHolidays(): Observable<Holidays[]> {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const requestop = new RequestOptions({ headers });
+
+        return this.http.get('/jboard/holidays/getall').map((response: Response) => {
+            return response.json() as Holidays[];
         }).catch(this.handleError);
     }
 

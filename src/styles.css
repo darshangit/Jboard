@@ -186,3 +186,8 @@ label {
 .fc-sat, .fc-sun {
     background-color: #343742;
 }
+
+.holiday {
+    background: #6b1818;
+    font-size: small;
+}

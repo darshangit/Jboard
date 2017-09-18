@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <h1>Leaves + Trainings</h1>
     <div class="container content-section implementation">
-        <p-schedule [events]="events" [header]="headerConfig" defaultDate="2017-09-16" [eventLimit]="100" [editable]="true" (onDayClick)="handleDayClick($event)"
-            (onEventClick)="handleEventClick($event)" [resizable]="true" [height]="auto" ></p-schedule>
+        <p-schedule [events]="events" [header]="headerConfig" [eventLimit]="100" [editable]="true" (onDayClick)="handleDayClick($event)"
+            (onEventClick)="handleEventClick($event)" [resizable]="true" [height]="auto" [eventRender]="eventAfterAllRenderer()"></p-schedule>
 
         <p-dialog header="LT Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
             [style]="{'overflow':'visible'}" [resizable]="false">
