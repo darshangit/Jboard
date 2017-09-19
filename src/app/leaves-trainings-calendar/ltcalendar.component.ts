@@ -3,6 +3,7 @@ import { RetroService } from '../service/retro.services';
 import { LeavesAndTrainings } from '../model/leavesTrainings.model';
 import * as moment from 'moment';
 import * as $ from 'jquery';
+import { MemberService } from '../service/member.services';
 @Component({
     selector: 'app-ltcalendar',
     templateUrl: './ltcalendar.component.html'
@@ -19,11 +20,15 @@ export class LTCalendarComponent implements OnInit {
 
     responseArray = [];
     holidayArray = [];
-    constructor(private cd: ChangeDetectorRef, private retroServices: RetroService) {}
+    constructor(private cd: ChangeDetectorRef, private retroServices: RetroService, private memberService: MemberService) { }
     ngOnInit(): void {
-        this.userList = ['Avinash', 'Abhilash', 'Amit', 'Biswajit', 'Basavaraju', 'Darshan',
-        'James', 'Vinay', 'Prashant', 'Sukeerti', 'Gils', 'Gaurav'];
-           this.headerConfig = {
+        this.memberService.getAllMembers().subscribe(resp => {
+            resp.forEach(member => {
+                this.userList.push(member.memberName);
+            });
+        });
+
+        this.headerConfig = {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
@@ -33,24 +38,24 @@ export class LTCalendarComponent implements OnInit {
             this.populateHolidays();
         });
         this.retroServices.getAllLeavesAndTrainings().subscribe(response => {
-                this.responseArray = response;
-                this.events = [];
-                this.responseArray.forEach(element => {
-                    let color = '#5cb85c';
-                    if ( element.type === 'Leaves') {
-                        color = '#d9534f';
-                    }
-                    const lt: MyEvent = {
-                        id: Number(element.ltUuid),
-                        title: element.name + '-' + element.type,
-                        name: element.name,
-                        start: element.fromDate,
-                        end: moment(element.toDate).add(1, 'd').toDate(),
-                        type: element.type,
-                        allDay: true,
-                        color: color
-                    };
-                    this.events.push(lt);
+            this.responseArray = response;
+            this.events = [];
+            this.responseArray.forEach(element => {
+                let color = '#5cb85c';
+                if (element.type === 'Leaves') {
+                    color = '#d9534f';
+                }
+                const lt: MyEvent = {
+                    id: Number(element.ltUuid),
+                    title: element.name + '-' + element.type,
+                    name: element.name,
+                    start: element.fromDate,
+                    end: moment(element.toDate).add(1, 'd').toDate(),
+                    type: element.type,
+                    allDay: true,
+                    color: color
+                };
+                this.events.push(lt);
             });
         });
     }
@@ -73,8 +78,8 @@ export class LTCalendarComponent implements OnInit {
 
         const index: number = this.findEventIndexById(e.calEvent.id);
         if (index >= 0) {
-           this.event = this.events[index];
-           this.event.end = moment(this.event.end).add(-1, 'd').toDate();
+            this.event = this.events[index];
+            this.event.end = moment(this.event.end).add(-1, 'd').toDate();
         } else {
             // this.event = new MyEvent();
             // this.event.title = e.calEvent.title;
@@ -116,7 +121,7 @@ export class LTCalendarComponent implements OnInit {
                     this.events = [];
                     this.responseArray.forEach(element => {
                         let color = '#5cb85c';
-                        if ( element.type === 'Leaves') {
+                        if (element.type === 'Leaves') {
                             color = '#d9534f';
                         }
                         const lt: MyEvent = {
@@ -149,7 +154,7 @@ export class LTCalendarComponent implements OnInit {
                 this.events = [];
                 this.responseArray.forEach(element => {
                     let color = '#5cb85c';
-                    if ( element.type === 'Leaves') {
+                    if (element.type === 'Leaves') {
                         color = '#d9534f';
                     }
                     const lt: MyEvent = {
@@ -177,7 +182,7 @@ export class LTCalendarComponent implements OnInit {
             this.events = [];
             this.responseArray.forEach(element => {
                 let color = '#5cb85c';
-                if ( element.type === 'Leaves') {
+                if (element.type === 'Leaves') {
                     color = '#d9534f';
                 }
                 const lt: MyEvent = {
@@ -209,7 +214,7 @@ export class LTCalendarComponent implements OnInit {
     }
 
     eventAfterAllRenderer(event) {
-       this.populateHolidays();
+        this.populateHolidays();
     }
 
 }

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+            <h1>Current Members <span class="label label-success">{{totalMember}}</span></h1>
+            <div>
+            <div *ngFor="let member of memberArray">
+                        <h4><button type="submit" (click)="deleteMember(member)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button> {{member.memberName}}</h4>
+            </div>
+            </div>
+    </div>
+    <br><br>
+    <div class="col-md-8">
+        <form #memberForm="ngForm" (ngSubmit)="addMember(memberForm.value)" autocomplete="off" novalidate>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input (ngModel)="name" id="name" required type="text" class="form-control" name="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" [disabled]="memberForm.invalid" class="btn btn-pill btn-danger"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+        </form>
+    </div>
+</div>

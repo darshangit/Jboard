@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
-import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent } from './index';
+import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -13,6 +13,7 @@ import {ScheduleModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
   CheckboxModule, TabViewModule, CodeHighlighterModule } from 'primeng/primeng';
+import { MemberService } from './service/member.services';
 
 @NgModule({
   imports: [
@@ -37,11 +38,13 @@ import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarM
     RetroComponent,
     RetroHistoryComponent,
     LeavesTrainingComponent,
-    LTCalendarComponent
+    LTCalendarComponent,
+    MemberComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    RetroService
+    RetroService,
+    MemberService
 
   ],
   bootstrap: [AppComponent]

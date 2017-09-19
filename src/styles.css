@@ -191,3 +191,14 @@ label {
     background: #6b1818;
     font-size: small;
 }
+
+.myNavFont {
+    font-size: large;
+}
+
+.myButton{
+
+        width: -webkit-fill-available;
+        height: 35px;
+    
+}
