@@ -3,7 +3,7 @@ import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberCom
 
 export const appRoutes: Routes = [
     { path: 'app-retro', component: RetroComponent },
-    { path: '', redirectTo: '/app-retro', pathMatch: 'full' },
+    { path: '', redirectTo: '/app-ltcalendar', pathMatch: 'full' },
     { path: 'app-leavestrainings', component: LeavesTrainingComponent },
     { path: 'app-ltcalendar', component: LTCalendarComponent },
     { path: 'app-member', component: MemberComponent }

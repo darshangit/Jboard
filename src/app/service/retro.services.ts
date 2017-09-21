@@ -30,6 +30,16 @@ export class RetroService {
         }).catch(this.handleError);
     }
 
+    deleteRetroHistory(sprintno): Observable<RetroModel[]> {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const requestop = new RequestOptions({ headers });
+
+        return this.http.get('/jboard/retro/delete/' + sprintno).map((response: Response) => {
+            return response.json() as RetroModel[];
+        }).catch(this.handleError);
+    }
+
+
     saveLeavesAndTrainings(leaveTrainings): Observable<LeavesAndTrainings[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });

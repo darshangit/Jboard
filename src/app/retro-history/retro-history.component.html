@@ -2,55 +2,56 @@
 </h1>
 
 <div id="mydiv" class="collapse">
-<div *ngFor="let retroHist of retroHistories" class="mystrip">
-    <div class="col-md-1 input-group">
-        <span class="input-group-addon myAddon">Sprint</span>
-        <input id="text" type="text" class="form-control mySprint" name="sprintNo" disabled placeholder="{{retroHist.sprintNo}}">
-    </div>
-    <br>
-    <div class="row">
+    <div *ngFor="let retroHist of retroHistories" class="mystrip">
+            <button type="submit" (click)="deleteRetro(retroHist)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button>
+            <div class="col-md-1 input-group">
+                <span class="input-group-addon myAddon">Sprint</span>
+                <input id="text" type="text" class="form-control mySprint" name="sprintNo" disabled placeholder="{{retroHist.sprintNo}}">
+            </div>
+        <br>
+        <div class="row">
 
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-success myButton">Start</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.startComment}}
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-success myButton">Start</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.startComment}}
                 </textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-danger myButton">Stop</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.stopComment}}</textarea>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-danger myButton">Stop</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.stopComment}}</textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-info myButton">Continue</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.continueComment}}</textarea>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-info myButton">Continue</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.continueComment}}</textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-success myButton">More</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.continueComment}}</textarea>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-success myButton">More</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.continueComment}}</textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-danger myButton">Less</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.lessComment}}</textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-pill btn-primary myButton">Action Items</button>
+                <div class="form-group">
+                    <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.actionItemsComment}}</textarea>
+                </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-danger myButton">Less</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.lessComment}}</textarea>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-lg btn-pill btn-primary myButton">Action Items</button>
-            <div class="form-group">
-                <textarea class="form-control mycomment" rows="8" id="comment" disabled>{{retroHist.actionItemsComment}}</textarea>
-            </div>
-        </div>
+        <br/>
     </div>
-    <br/>
-</div>
 </div>
