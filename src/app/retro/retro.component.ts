@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { RetroService } from '../service/retro.services';
 import { RetroModel } from '../model/retro.model';
+import * as email from 'emailjs';
 
 @Component({
     selector: 'app-retro',
@@ -63,7 +64,30 @@ export class RetroComponent implements OnInit {
             this.retroSubmitted = resp;
         });
 
+        this.sendMail(formValues);
         this.initialize();
+    }
+
+    sendMail(formValues) {
+          const server 	= email.server.connect({
+           user:	'username' ,
+           password: 'password',
+           host:	'smtp.your-email.com',
+           ssl:		true
+        });
+
+        console.log('server', server);
+        const message	= {
+           text:	'i hope this works',
+           from:	'darshansasdasd@gmail.com',
+           to:		'darshansasdasd@gmail.com',
+           cc:		'else <else@your-email.com>',
+           subject:	'Retrospective',
+           attachment:
+           [
+              {data: `<html>i <i>hope</i> this works!</html>`, alternative: true}
+           ]
+        };
     }
 
 }
