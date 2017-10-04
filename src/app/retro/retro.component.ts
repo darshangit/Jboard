@@ -88,6 +88,9 @@ export class RetroComponent implements OnInit {
               {data: `<html>i <i>hope</i> this works!</html>`, alternative: true}
            ]
         };
+
+
+        server.send(message, function(err, resp) { console.log(err || message); });
     }
 
 }
