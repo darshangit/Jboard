@@ -27,7 +27,7 @@ export class RetroHistoryComponent implements DoCheck {
     }
 
     deleteRetro(retro: RetroModel) {
-        console.log('retro',retro)
+        console.log('retro', retro )
         this.retroService.deleteRetroHistory(retro.sprintNo).subscribe(resp => {
             this.retroHistories = resp;
         });

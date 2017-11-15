@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <h1>Deployment Status
+        <button type="button" class="btn btn-primary" (click)="getBatest1Details()">Batest-1</button>
+        <button type="button" class="btn btn-primary" (click)="getBatest2Details()">Batest-2</button>
+        <button type="button" class="btn btn-primary" (click)="getUatDetails()">UAT</button>
+        <button type="button" class="btn btn-primary" (click)="getLikeProdDetails()">LikeProd</button>
+    </h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a *ngIf="isClicked" class="btn btn-danger"><i class="fa fa-windows fa-lg"></i> {{environment}}, {{jarLocation.systemDate}}</a>
+        </div>
+    </div>
+
+    <br/>
+    <p-dataGrid [value]="jarLocation.locationDetailsResponseList" [rows]="20" *ngIf="isClicked">
+        <ng-template let-jar pTemplate="item">
+            <div style="padding:3px" class="ui-g-12 ui-md-3">
+                <p-panel [header]="jar.projectName" [style]="{'text-align':'center'}">
+                    <a class="btn btn-lg" [ngClass]="getClass(jar)">
+                        <i class="fa fa-cog fa-spin fa-1x fa-fw pull-left"></i>
+                        <b>{{jar.projectName}}</b>
+                        <br>{{jar.createDate}}</a>
+                </p-panel>
+            </div>
+        </ng-template>
+    </p-dataGrid>
+</div>

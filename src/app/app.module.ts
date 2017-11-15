@@ -12,8 +12,10 @@ import { HttpModule } from '@angular/http';
 import {ScheduleModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
-  CheckboxModule, TabViewModule, CodeHighlighterModule } from 'primeng/primeng';
+  CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule } from 'primeng/primeng';
 import { MemberService } from './service/member.services';
+import { JarLocationService } from './service/jar-location.service';
+import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { MemberService } from './service/member.services';
     CheckboxModule,
     ButtonModule,
     TabViewModule,
+    DataGridModule,
     CodeHighlighterModule,
     RouterModule.forRoot(appRoutes)
  ],
@@ -39,13 +42,14 @@ import { MemberService } from './service/member.services';
     RetroHistoryComponent,
     LeavesTrainingComponent,
     LTCalendarComponent,
-    MemberComponent
+    MemberComponent,
+    JarLocationDetailsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     RetroService,
-    MemberService
-
+    MemberService,
+    JarLocationService
   ],
   bootstrap: [AppComponent]
 })

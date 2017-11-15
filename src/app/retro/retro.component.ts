@@ -64,7 +64,7 @@ export class RetroComponent implements OnInit {
             this.retroSubmitted = resp;
         });
 
-        this.sendMail(formValues);
+        // this.sendMail(formValues);
         this.initialize();
     }
 
