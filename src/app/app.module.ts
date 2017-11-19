@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
-import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent } from './index';
+import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent, SprintPlanningComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -43,7 +43,8 @@ import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.com
     LeavesTrainingComponent,
     LTCalendarComponent,
     MemberComponent,
-    JarLocationDetailsComponent
+    JarLocationDetailsComponent,
+    SprintPlanningComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
