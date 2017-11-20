@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SprintPlanningComponent implements OnInit {
 
+    vin: string = null;
+    displayDialog = false;
+    cities = ['asdasdasd', 'asdasdfsfasd', 'asdasd'];
     constructor() {}
     ngOnInit(): void {
+    }
+
+    showDialogToAdd() {
+        this.displayDialog = true;
     }
 
 }

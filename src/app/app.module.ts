@@ -12,7 +12,8 @@ import { HttpModule } from '@angular/http';
 import {ScheduleModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
-  CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule } from 'primeng/primeng';
+  CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule, SharedModule,
+   InputTextareaModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
 import { MemberService } from './service/member.services';
 import { JarLocationService } from './service/jar-location.service';
 import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
@@ -33,6 +34,10 @@ import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.com
     TabViewModule,
     DataGridModule,
     CodeHighlighterModule,
+    SharedModule,
+    InputTextareaModule,
+    DropdownModule,
+    SelectButtonModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [
