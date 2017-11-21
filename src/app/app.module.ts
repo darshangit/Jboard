@@ -17,6 +17,7 @@ import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarM
 import { MemberService } from './service/member.services';
 import { JarLocationService } from './service/jar-location.service';
 import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
+import { SprintPlanningService } from './service/sprint-planning.service';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.com
   providers: [
     RetroService,
     MemberService,
-    JarLocationService
+    JarLocationService,
+    SprintPlanningService
   ],
   bootstrap: [AppComponent]
 })
