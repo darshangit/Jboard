@@ -1,11 +1,15 @@
 <div class="container-fluid">
     <h1>Sprint Planning
-       <button type="button" class="btn btn-primary" (click)="setSprintNo($event)">Sprint 72</button>
+        <button type="button" class="btn btn-primary" (click)="setSprintNo($event)">Sprint 72</button>
     </h1>
 
-    <p-dataTable *ngIf="displayHeaderTab" [value]="planning" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true"
-        rows="15" [responsive]="true">
-        <p-header>Task List</p-header>
+    <p-dataTable [value]="planning" selectionMode="single" [(selection)]="selectedPlan" (onRowSelect)="onRowSelect($event)"
+        [paginator]="true" rows="15" [responsive]="true">
+        <!-- <div class="row" *ngIf="planning?.length > 0">
+            <h3 class="col-md-offset-6">
+                <p-header class="label label-danger">Task List</p-header>
+            </h3>
+        </div> -->
         <p-column field="itemName" header="Name" [sortable]="true"></p-column>
         <p-column field="itemDescription" header="Description" [sortable]="true"></p-column>
         <p-column field="issueType" header="Type" [sortable]="true"></p-column>
@@ -13,92 +17,101 @@
         <p-column field="endDate" header="End" [sortable]="true"></p-column>
         <p-column field="assignee" header="Assignee" [sortable]="true"></p-column>
         <p-column field="currentStatus" header="Status" [sortable]="true"></p-column>
-        <p-footer>
-            <div class="ui-helper-clearfix" style="width:100%">
-                <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button>
-            </div>
-        </p-footer>
+        <h4>
+            <p-footer>
+                <div class="ui-helper-clearfix" style="width:100%">
+                    <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add Task"></button>
+                </div>
+            </p-footer>
+        </h4>
     </p-dataTable>
 
-    <p-dialog header="Task" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
-        <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="newPlanningItem">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="itemName">Name</label>
+    <div class="myDialog">
+        <p-dialog header="Task" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [contentStyle]="{'font-size':'larger'}"
+            [style]="{'font-size':'larger'}">
+            <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="newPlanningItem">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="itemName">Name</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <input pInputText id="itemName" [(ngModel)]="newPlanningItem.itemName" />
+                    </div>
                 </div>
-                <div class="ui-grid-col-8">
-                    <input pInputText id="itemName" [(ngModel)]="itemName" />
+                <br/>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="itemDescription">Description</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <textarea pInputTextarea [(ngModel)]="newPlanningItem.itemDescription" autoResize="autoResize"></textarea>
+                    </div>
                 </div>
-            </div>
-            <br/>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="itemDescription">Description</label>
+                <br/>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="currentStatus">Type</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <p-selectButton [options]="issueTypeList" [(ngModel)]="newPlanningItem.issueType"></p-selectButton>
+                    </div>
                 </div>
-                <div class="ui-grid-col-8">
-                    <textarea pInputTextarea [(ngModel)]="itemDescription" autoResize="autoResize"></textarea>
+                <br/>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="start">Start</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <p-calendar [(ngModel)]="newPlanningItem.startDate" [showIcon]="true"></p-calendar>
+                        <span style="margin-left:35px">{{date3|date}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="issueType">Type</label>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="start">End</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <p-calendar [(ngModel)]="newPlanningItem.endDate" [showIcon]="true"></p-calendar>
+                        <span style="margin-left:35px">{{date3|date}}</span>
+                    </div>
                 </div>
-                <div class="ui-grid-col-8">
-                    <p-dropdown [options]="cities" [(ngModel)]="issueType" placeholder="Issue Type" optionLabel="issueType"></p-dropdown>
-                </div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="start">Start</label>
-                </div>
-                <div class="ui-grid-col-8">
-                    <p-calendar [(ngModel)]="startDate" [showIcon]="true"></p-calendar>
-                    <span style="margin-left:35px">{{date3|date}}</span>
-                </div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="start">End</label>
-                </div>
-                <div class="ui-grid-col-8">
-                    <p-calendar [(ngModel)]="endDate" [showIcon]="true"></p-calendar>
-                    <span style="margin-left:35px">{{date3|date}}</span>
-                </div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="assignee">Assignee</label>
-                </div>
-                <div class="ui-grid-col-8">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="assignee">Assignee</label>
+                    </div>
+                    <div class="ui-grid-col-8">
 
-                        <select class="form-control" id="select" [(ngModel)]="assignee">
-                                <option>{{assignee}}</option>
-                                <option *ngFor="let assig of assigneesList">{{assig}}</option>
+                        <select class="form-control" id="select" [(ngModel)]="newPlanningItem.assignee">
+                            <option>{{assignee}}</option>
+                            <option *ngFor="let assig of assigneesList">{{assig}}</option>
                         </select>
+                    </div>
                 </div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">
-                    <label for="currentStatus">Status</label>
+                <br/>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">
+                        <label for="currentStatus">Status</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                        <p-selectButton [options]="statusList" [(ngModel)]="newPlanningItem.currentStatus"></p-selectButton>
+                    </div>
                 </div>
-                <div class="ui-grid-col-8">
-                    <p-selectButton [options]="cities" [(ngModel)]="currentStatus"></p-selectButton>
-                </div>
-            </div>
-            <div class="ui-grid-row">
+                <br/>
+                <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
                         <label for="currentStatus">Sprint</label>
                     </div>
                     <div class="ui-grid-col-8">
-                        <p-selectButton [options]="cities" [(ngModel)]="currentStatus"></p-selectButton>
+                        <p-selectButton [options]="sprintList" [(ngModel)]="newPlanningItem.sprintNo"></p-selectButton>
                     </div>
                 </div>
-        </div>
-        <p-footer>
-            <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
             </div>
-        </p-footer>
-    </p-dialog>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+                    <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+                </div>
+            </p-footer>
+        </p-dialog>
+    </div>
 </div>

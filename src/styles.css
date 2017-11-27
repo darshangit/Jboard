@@ -202,3 +202,14 @@ label {
         height: 35px;
     
 }
+
+.myDialog .ui-dialog .ui-dialog-content {
+    width: 600px;
+    height: 400px;
+    font-size: larger;
+}
+
+.myDialog .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 1em 1.5em;
+    width: 600px;
+}

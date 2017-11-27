@@ -10,20 +10,29 @@ import { MemberService } from '../service/member.services';
 })
 export class SprintPlanningComponent implements OnInit {
 
-    vin: string = null;
     displayDialog = false;
     displayHeaderTab = false;
-    cities = ['asdasdasd', 'asdasdfsfasd', 'asdasd'];
+    statusList = [ {label: 'DEV', value: 'DEV'}, {label: 'BA', value: 'BA'}, {label: 'DONE', value: 'DONE'} ];
+    issueTypeList  = [ {label: 'Bug', value: 'Bug'}, {label: 'Feature', value: 'Feature'}];
+    sprintList = [];
 
     sprintNo: number;
     planning: SprintPlanningModel[];
     newPlanningItem: SprintPlanningModel;
     newItem: boolean;
+    selectedPlan: SprintPlanningModel;
     assigneesList = [];
 
     constructor(private sprintService: SprintPlanningService, private memberService: MemberService) {}
 
     ngOnInit(): void {
+
+        this.sprintService.getPlanningsBySprintNo(72).subscribe(resp => {
+            this.displayHeaderTab = true;
+            this.planning = resp;
+            console.log('this.planning', this.planning);
+        });
+
         this.memberService.getAllMembers().subscribe(resp =>
             resp.forEach(member => {
                 this.assigneesList.push(member.memberName);
@@ -35,17 +44,33 @@ export class SprintPlanningComponent implements OnInit {
         this.newItem = true;
         this.newPlanningItem = new SprintModelClass();
         this.displayDialog = true;
-        console.log('this.assigneesList',this.assigneesList)        
     }
 
     setSprintNo(value) {
         const sprintNoString: string = value.target.innerText;
         this.sprintNo = +sprintNoString.split(' ')[1];
-        this.displayHeaderTab = true;
+        this.sprintList = [ {label: 'This Sprint', value: this.sprintNo}, {label: 'Next Sprint', value: this.sprintNo + 1}];
 
         this.sprintService.getPlanningsBySprintNo(this.sprintNo).subscribe(resp => {
+            this.displayHeaderTab = true;
             this.planning = resp;
+            console.log('this.planning', this.planning);
         });
+    }
+
+    save() {
+       console.log('this.newPlanningItem', this.newPlanningItem);
+       this.sprintService.savePlanning(this.newPlanningItem).subscribe(resp => {
+           this.planning = resp;
+           this.displayDialog = true;
+
+       });
+
+    }
+
+    delete() {
+        this.displayDialog = false;
+
     }
 
 }
