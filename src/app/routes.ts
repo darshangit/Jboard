@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent,
-    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent } from './index';
+    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent, SprintDetailsComponent } from './index';
 
 
 export const appRoutes: Routes = [
@@ -10,5 +10,6 @@ export const appRoutes: Routes = [
     { path: 'app-ltcalendar', component: LTCalendarComponent },
     { path: 'app-member', component: MemberComponent },
     { path: 'app-jarlocationdetails', component: JarLocationDetailsComponent },
-    { path: 'app-sprint-planning', component: SprintPlanningComponent}
+    { path: 'app-sprint-planning', component: SprintPlanningComponent},
+    { path: 'app-sprint-details', component: SprintDetailsComponent}
 ];

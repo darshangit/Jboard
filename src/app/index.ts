@@ -5,3 +5,4 @@ export * from './leaves-trainings-calendar/ltcalendar.component';
 export * from './addDeleteMember/member.component';
 export * from './jar-time-creation/jar-details.component';
 export * from './sprint-planning/sprint-planning.component';
+export * from './sprint-details/sprint-details.component';

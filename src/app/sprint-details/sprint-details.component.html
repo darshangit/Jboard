@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <h1>Sprint Details</h1>
+        <div>
+            <div *ngFor="let sprint of sprintArray">
+                <h4>
+                    <button type="submit" (click)="deleteSprint(sprint)" class="btn btn-xs btn-danger">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button> Sprint - {{sprint.sprintNumber}} <button type="submit" (click)="markAsCurrentSprint(sprint)" class="btn btn-xs" [ngClass]="getClass(sprint)" [pTooltip]="getTooltip(sprint)" tooltipPosition="top">
+                            <span class="fa fa-check-square-o"></span>
+                        </button></h4>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-8">
+        <form #sprintForm="ngForm" (ngSubmit)="addSprint(sprintForm.value)" autocomplete="off" novalidate>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-cog fa-spin fa-1x fa-fw pull-left"></i>
+                    </span>
+                    <input (ngModel)="sprintNo" id="sprintNo" required type="number" class="form-control" name="sprintNo" placeholder="Sprint No">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" [disabled]="sprintForm.invalid" class="btn btn-pill btn-danger">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
