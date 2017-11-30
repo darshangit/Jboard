@@ -213,3 +213,43 @@ label {
     padding: 1em 1.5em;
     width: 600px;
 }
+
+.myDataTable .ui-widget-content {
+    border: 1px solid #D5D5D5;
+    background: #252830;
+    color: #ffffff;
+    height: 52px;
+    font-size: larger;
+}
+
+.ui-datatable tbody.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
+    cursor: pointer;
+    background: #186ba0;
+    color: #27a31b;
+}
+
+.myDataTable .ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+    border-color: inherit;
+    box-sizing: border-box;
+    padding: .25em .5em;
+    border-width: 1px;
+    border-style: solid;
+    background: #252830;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td {
+    font-weight: 800;
+    font-size: initial;
+    color: #337ab7;
+}
+
+.myDataTable .ui-widget-header {
+    border: 1px solid #d9d9d9;
+    background: #252830;
+    color: #1b1d1f;
+}
+
+.ui-datatable th.ui-state-default {
+    background: #35373d;
+    border-color: #d9d9d9;
+}

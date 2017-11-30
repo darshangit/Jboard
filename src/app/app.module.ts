@@ -39,6 +39,7 @@ import { SprintPlanningService } from './service/sprint-planning.service';
     InputTextareaModule,
     DropdownModule,
     SelectButtonModule,
+    DataTableModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [

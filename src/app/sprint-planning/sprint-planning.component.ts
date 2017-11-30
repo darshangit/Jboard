@@ -12,8 +12,8 @@ export class SprintPlanningComponent implements OnInit {
 
     displayDialog = false;
     displayHeaderTab = false;
-    statusList = [ {label: 'DEV', value: 'DEV'}, {label: 'BA', value: 'BA'}, {label: 'DONE', value: 'DONE'} ];
-    issueTypeList  = [ {label: 'Bug', value: 'Bug'}, {label: 'Feature', value: 'Feature'}];
+    statusList = [{ label: 'DEV', value: 'DEV' }, { label: 'BA', value: 'BA' }, { label: 'DONE', value: 'DONE' }];
+    issueTypeList = [{ label: 'Bug', value: 'Bug' }, { label: 'Feature', value: 'Feature' }];
     sprintList = [];
 
     sprintNo: number;
@@ -23,12 +23,11 @@ export class SprintPlanningComponent implements OnInit {
     selectedPlan: SprintPlanningModel;
     assigneesList = [];
 
-    constructor(private sprintService: SprintPlanningService, private memberService: MemberService) {}
+    constructor(private sprintService: SprintPlanningService, private memberService: MemberService) { }
 
     ngOnInit(): void {
 
         this.sprintService.getPlanningsBySprintNo(72).subscribe(resp => {
-            this.displayHeaderTab = true;
             this.planning = resp;
             console.log('this.planning', this.planning);
         });
@@ -49,28 +48,46 @@ export class SprintPlanningComponent implements OnInit {
     setSprintNo(value) {
         const sprintNoString: string = value.target.innerText;
         this.sprintNo = +sprintNoString.split(' ')[1];
-        this.sprintList = [ {label: 'This Sprint', value: this.sprintNo}, {label: 'Next Sprint', value: this.sprintNo + 1}];
+        this.sprintList = [{ label: 'This Sprint', value: this.sprintNo }, { label: 'Next Sprint', value: this.sprintNo + 1 }];
 
         this.sprintService.getPlanningsBySprintNo(this.sprintNo).subscribe(resp => {
             this.displayHeaderTab = true;
             this.planning = resp;
-            console.log('this.planning', this.planning);
         });
     }
 
     save() {
-       console.log('this.newPlanningItem', this.newPlanningItem);
-       this.sprintService.savePlanning(this.newPlanningItem).subscribe(resp => {
-           this.planning = resp;
-           this.displayDialog = true;
-
-       });
-
+        this.sprintService.savePlanning(this.newPlanningItem).subscribe(resp => {
+            this.planning = resp;
+            this.displayDialog = false;
+        });
     }
 
     delete() {
-        this.displayDialog = false;
+        this.sprintService.deletePlanningsBySprintNo(this.newPlanningItem.planningUuid, this.sprintNo).subscribe(resp => {
+            this.planning = resp;
+            this.displayDialog = false;
+        });
+    }
 
+    onRowSelect(event) {
+        console.log(event);
+        this.newPlanningItem = this.clonePlan(event.data);
+        this.displayDialog = true;
+    }
+
+    clonePlan(c: SprintPlanningModel): SprintPlanningModel {
+        const sprintModelClass = new SprintModelClass();
+        for (const prop of Object.keys(c)) {
+            console.log('prop', prop);
+            if (prop === 'startDate' || prop === 'endDate') {
+                sprintModelClass[prop] = new Date(c[prop]);
+            } else {
+                sprintModelClass[prop] = c[prop];
+            }
+        }
+        console.log('sprintModelClass', sprintModelClass);
+        return sprintModelClass;
     }
 
 }

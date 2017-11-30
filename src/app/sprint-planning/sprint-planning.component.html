@@ -3,13 +3,15 @@
         <button type="button" class="btn btn-primary" (click)="setSprintNo($event)">Sprint 72</button>
     </h1>
 
-    <p-dataTable [value]="planning" selectionMode="single" [(selection)]="selectedPlan" (onRowSelect)="onRowSelect($event)"
+    <div class="row" *ngIf="planning?.length > 0 && displayHeaderTab">
+        <h3 class="col-md-offset-6">
+            <p-header class="label label-danger">Task List</p-header>
+        </h3>
+    </div>
+
+    <p-dataTable styleClass="myDataTable" *ngIf="displayHeaderTab" [value]="planning" selectionMode="single" [(selection)]="selectedPlan" (onRowSelect)="onRowSelect($event)"
         [paginator]="true" rows="15" [responsive]="true">
-        <!-- <div class="row" *ngIf="planning?.length > 0">
-            <h3 class="col-md-offset-6">
-                <p-header class="label label-danger">Task List</p-header>
-            </h3>
-        </div> -->
+
         <p-column field="itemName" header="Name" [sortable]="true"></p-column>
         <p-column field="itemDescription" header="Description" [sortable]="true"></p-column>
         <p-column field="issueType" header="Type" [sortable]="true"></p-column>
@@ -17,15 +19,16 @@
         <p-column field="endDate" header="End" [sortable]="true"></p-column>
         <p-column field="assignee" header="Assignee" [sortable]="true"></p-column>
         <p-column field="currentStatus" header="Status" [sortable]="true"></p-column>
-        <h4>
-            <p-footer>
-                <div class="ui-helper-clearfix" style="width:100%">
-                    <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add Task"></button>
-                </div>
-            </p-footer>
-        </h4>
+
     </p-dataTable>
 
+    <h4>
+        <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+                <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add Task"></button>
+            </div>
+        </p-footer>
+    </h4>
     <div class="myDialog">
         <p-dialog header="Task" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [contentStyle]="{'font-size':'larger'}"
             [style]="{'font-size':'larger'}">
@@ -62,7 +65,7 @@
                         <label for="start">Start</label>
                     </div>
                     <div class="ui-grid-col-8">
-                        <p-calendar [(ngModel)]="newPlanningItem.startDate" [showIcon]="true"></p-calendar>
+                        <p-calendar [(ngModel)]="newPlanningItem.startDate" dateFormat="dd-M-yy" [showIcon]="true"></p-calendar>
                         <span style="margin-left:35px">{{date3|date}}</span>
                     </div>
                 </div>
@@ -71,7 +74,7 @@
                         <label for="start">End</label>
                     </div>
                     <div class="ui-grid-col-8">
-                        <p-calendar [(ngModel)]="newPlanningItem.endDate" [showIcon]="true"></p-calendar>
+                        <p-calendar [(ngModel)]="newPlanningItem.endDate" dateFormat="dd-M-yy" [showIcon]="true"></p-calendar>
                         <span style="margin-left:35px">{{date3|date}}</span>
                     </div>
                 </div>
