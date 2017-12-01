@@ -253,3 +253,19 @@ label {
     background: #35373d;
     border-color: #d9d9d9;
 }
+
+.ui-slider-horizontal {
+    background: #4CAF50;
+	height: .6em;
+    width: 5em;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -.25em;
+    margin-left: 0em;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: 1px !important;
+    margin-left: 0em;
+}

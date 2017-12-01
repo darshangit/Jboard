@@ -1,11 +1,16 @@
 <div class="container-fluid">
-    <h1>Sprint Planning
-        <button type="button" class="btn btn-primary" (click)="setSprintNo($event)">Sprint 72</button>
+    <h1>
+            <span class="label label-success">Current</span>
+        <button type="button" class="btn btn-primary" (click)="setSprintNo($event)">Sprint {{currentSprint?.sprintNumber}}</button>
+        <button type="button pull-right" class="btn-xs btn-primary pull-right" (click)="setSprintNo($event)">Sprint {{futureSprints}}</button>
+ 
+        <p-slider class="pull-right" [(ngModel)]="futureSprints" [max]="200" [step]="1">{{futureSprints}}</p-slider>
     </h1>
 
+    <hr/>
     <div class="row" *ngIf="planning?.length > 0 && displayHeaderTab">
         <h3 class="col-md-offset-6">
-            <p-header class="label label-danger">Task List</p-header>
+            <p-header class="label label-danger">Task List : Sprint-{{sprintNo}}</p-header>
         </h3>
     </div>
 
@@ -13,12 +18,33 @@
         [paginator]="true" rows="15" [responsive]="true">
 
         <p-column field="itemName" header="Name" [sortable]="true"></p-column>
-        <p-column field="itemDescription" header="Description" [sortable]="true"></p-column>
-        <p-column field="issueType" header="Type" [sortable]="true"></p-column>
-        <p-column field="startDate" header="Start" [sortable]="true"></p-column>
-        <p-column field="endDate" header="End" [sortable]="true"></p-column>
-        <p-column field="assignee" header="Assignee" [sortable]="true"></p-column>
-        <p-column field="currentStatus" header="Status" [sortable]="true"></p-column>
+        <p-column field="itemDescription" header="Description" [sortable]="true" [style]="{'width':'30%'}"></p-column>
+        <p-column field="issueType" header="Type" [sortable]="true">
+                <ng-template let-col let-plan="rowData" pTemplate="body">
+                        <h4><span class="label" [ngClass]="getIssueTypeClass(plan)">{{plan[col.field]}}</span></h4>
+                </ng-template>
+
+        </p-column>
+        <p-column field="startDate" header="Start" [sortable]="true">
+                <ng-template let-col let-plan="rowData" pTemplate="body">
+                        <h5><span>{{plan[col.field]|date:'mediumDate'}}</span></h5>
+                </ng-template>
+        </p-column>
+        <p-column field="endDate" header="End" [sortable]="true">
+                <ng-template let-col let-plan="rowData" pTemplate="body">
+                        <h5><span>{{plan[col.field]|date:'mediumDate'}}</span></h5>
+                </ng-template>
+        </p-column>
+        <p-column field="assignee" header="Assignee" [sortable]="true">
+                <ng-template let-col let-plan="rowData" pTemplate="body">
+                        <h4><span [ngStyle]="{'color': '#d9534f','font-style': 'italic'}">{{plan[col.field]}}</span></h4>
+                </ng-template>
+        </p-column>
+        <p-column field="currentStatus" header="Status" [sortable]="true">
+            <ng-template let-col let-plan="rowData" pTemplate="body">
+                    <button class="btn" [ngClass]="getStatusClass(plan)">{{plan[col.field]}}</button>
+            </ng-template>
+        </p-column>
 
     </p-dataTable>
 

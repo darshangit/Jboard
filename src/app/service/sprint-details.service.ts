@@ -45,6 +45,15 @@ export class SprintDetailsService {
         }).catch(this.handleError);
     }
 
+    getCurrentSprint(): Observable<SprintDetailsModel> {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const requestop = new RequestOptions({ headers });
+
+        return this.http.get('/jboard/sprintDetails/getCurrentSprint').map((response: Response) => {
+            return response.json() as SprintDetailsModel;
+        }).catch(this.handleError);
+    }
+
     private handleError(error: Response) {
         return Observable.throw(error.statusText);
     }

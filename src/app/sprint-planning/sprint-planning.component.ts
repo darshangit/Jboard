@@ -3,6 +3,8 @@ import { SprintPlanningService } from '../service/sprint-planning.service';
 import { SprintPlanningModel } from '../model/sprint-planning.model';
 import { SprintModelClass } from '../model/sprint-planning.model.class';
 import { MemberService } from '../service/member.services';
+import { SprintDetailsService } from '../service/sprint-details.service';
+import { SprintDetailsModel } from '../model/sprint-details.model';
 
 @Component({
     selector: 'app-sprint-planning',
@@ -23,14 +25,22 @@ export class SprintPlanningComponent implements OnInit {
     selectedPlan: SprintPlanningModel;
     assigneesList = [];
 
-    constructor(private sprintService: SprintPlanningService, private memberService: MemberService) { }
+    currentSprint: SprintDetailsModel;
+    futureSprints: string;
+
+    constructor(private sprintService: SprintPlanningService, private memberService: MemberService,
+        private sprintDetailsService: SprintDetailsService) { }
 
     ngOnInit(): void {
 
-        this.sprintService.getPlanningsBySprintNo(72).subscribe(resp => {
-            this.planning = resp;
-            console.log('this.planning', this.planning);
-        });
+        this.sprintDetailsService.getCurrentSprint().subscribe(
+            resp => {
+                this.currentSprint = resp;
+                this.sprintService.getPlanningsBySprintNo(this.currentSprint.sprintNumber).subscribe(response => {
+                    this.planning = response;
+                });
+            }
+        );
 
         this.memberService.getAllMembers().subscribe(resp =>
             resp.forEach(member => {
@@ -49,7 +59,6 @@ export class SprintPlanningComponent implements OnInit {
         const sprintNoString: string = value.target.innerText;
         this.sprintNo = +sprintNoString.split(' ')[1];
         this.sprintList = [{ label: 'This Sprint', value: this.sprintNo }, { label: 'Next Sprint', value: this.sprintNo + 1 }];
-
         this.sprintService.getPlanningsBySprintNo(this.sprintNo).subscribe(resp => {
             this.displayHeaderTab = true;
             this.planning = resp;
@@ -58,7 +67,9 @@ export class SprintPlanningComponent implements OnInit {
 
     save() {
         this.sprintService.savePlanning(this.newPlanningItem).subscribe(resp => {
-            this.planning = resp;
+            this.sprintService.getPlanningsBySprintNo(this.sprintNo).subscribe(response => {
+                this.planning = response;
+            });
             this.displayDialog = false;
         });
     }
@@ -88,6 +99,27 @@ export class SprintPlanningComponent implements OnInit {
         }
         console.log('sprintModelClass', sprintModelClass);
         return sprintModelClass;
+    }
+
+    getStatusClass(planning: SprintPlanningModel): string {
+        let className = 'btn-danger';
+
+        if (planning.currentStatus === 'BA') {
+            className = 'btn-warning';
+        }else if (planning.currentStatus === 'DONE') {
+            className = 'btn-success';
+        }
+        return className;
+
+    }
+
+    getIssueTypeClass(planning: SprintPlanningModel): string {
+        let className = 'label-danger';
+
+        if (planning.issueType === 'Feature') {
+            className = 'label-success';
+        }
+        return className;
     }
 
 }
