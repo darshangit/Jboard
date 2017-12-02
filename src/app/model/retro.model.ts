@@ -1,4 +1,5 @@
 export interface RetroModel {
+    sprintUUID?: number;
     sprintNo: number;
     startDate: Date;
     endDate: Date;
@@ -9,4 +10,5 @@ export interface RetroModel {
     lessComment: string;
     actionItemsComment: string;
     createTimeStamp: Date;
+    loginName?: string;
 }

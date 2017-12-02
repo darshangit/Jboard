@@ -8,4 +8,5 @@ export interface SprintPlanningModel {
     assignee?: string;
     currentStatus?: string;
     sprintNo?: number;
+    loginName?: string;
 }

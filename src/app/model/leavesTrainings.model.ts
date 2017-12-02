@@ -6,4 +6,5 @@ export interface LeavesAndTrainings {
     toDate: Date;
     totalDays: number;
     createTimeStamp: Date;
+    loginName?: string;
 }

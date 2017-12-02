@@ -11,6 +11,7 @@ export class RetroHistoryComponent implements DoCheck {
     @Input() retroSubmitted: boolean;
     @Output() retroSubmittedChange: EventEmitter<boolean> = new EventEmitter();
     retroHistories: RetroModel[];
+
     constructor(private retroService: RetroService) {
         this.retroService.getRetroHistory().subscribe((resp) => {
             this.retroHistories = resp;
@@ -27,8 +28,8 @@ export class RetroHistoryComponent implements DoCheck {
     }
 
     deleteRetro(retro: RetroModel) {
-        console.log('retro', retro )
-        this.retroService.deleteRetroHistory(retro.sprintNo).subscribe(resp => {
+        console.log('retro', retro);
+        this.retroService.deleteRetroHistory(retro.sprintUUID).subscribe(resp => {
             this.retroHistories = resp;
         });
     }

@@ -10,4 +10,5 @@ export class SprintModelClass implements SprintPlanningModel {
     assignee: string;
     currentStatus: string;
     sprintNo: number;
+    loginName: string;
 }
