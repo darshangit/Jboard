@@ -16,7 +16,7 @@ export class SprintPlanningService {
 
         return this.http.post('/jboard/planning/save', JSON.stringify(sprintPlanningModel), requestop).map((response: Response) => {
             return response.json() as SprintPlanningModel[];
-        });
+        }).catch(this.handleError);
     }
 
     getPlanningsBySprintNo(sprintNo: number): Observable<SprintPlanningModel[]> {

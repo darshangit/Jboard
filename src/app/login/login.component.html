@@ -1,0 +1,35 @@
+<p-growl [(value)]="msgs"></p-growl>
+<div class="container-fluid">
+    <br/>
+    <br/>
+    <div class="container">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+        <div class="row">
+            <div class="col-md-offset-5">
+                <span class="ui-float-label">
+                    <input id="userName" type="text" size="30" [(ngModel)]="userName" name="userName" required pInputText>
+                    <label for="userName">Username</label>
+                </span>
+            </div>
+            <br/>
+            <br/>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-5">
+                <span class="ui-float-label">
+                    <input id="password" type="password" size="30" pPassword [(ngModel)]="password" [feedback]="false" required name="password">
+                    <label for="password">Password</label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-offset-5">
+            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success">Login</button>
+            <button type="reset" class="btn btn-danger myClearButton">Clear</button>
+        </div>
+    </form>
+        <hr>
+        <h4>Do you have multiple Excels floating around for <span class="myTasks">Leave Management, Retrospective, Sprint Planning</span>? If yes, <span class="myJboardColor">Jboard</span> is the solution for you.</h4>
+        <p>Need one for your team, Contact <a href="mailto:darshan.satyanarayana@socgen.com?Subject=Jboard sounds great for us" target="_top" class="btn-xs btn-primary">Darshan Satya</a></p>
+        
+    </div>

@@ -269,3 +269,42 @@ label {
     top: 1px !important;
     margin-left: 0em;
 }
+
+.myClearButton{
+    margin-left: 12px;
+}
+
+.myJboardColor{
+    color: #00c2ff;
+}
+
+.myTasks{
+    color: #32b786;
+}
+
+.ui-growl {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    width: 20em;
+}
+
+.ui-growl-message p {
+    font-weight: initial;
+    font-size: medium;
+}
+
+.myUser {
+    margin-top: 10px;
+}
+
+.myDropdown {
+    background-color: #337ab7;
+}
+
+.myDropdown>li>a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #0bc2ff;
+    cursor: pointer;
+}

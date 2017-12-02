@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent,
-    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent, SprintDetailsComponent } from './index';
+    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent, SprintDetailsComponent, LoginComponent } from './index';
 
 
 export const appRoutes: Routes = [
     { path: 'app-retro', component: RetroComponent },
-    { path: '', redirectTo: '/app-ltcalendar', pathMatch: 'full' },
+    { path: '', redirectTo: '/app-login', pathMatch: 'full' },
     { path: 'app-leavestrainings', component: LeavesTrainingComponent },
     { path: 'app-ltcalendar', component: LTCalendarComponent },
     { path: 'app-member', component: MemberComponent },
     { path: 'app-jarlocationdetails', component: JarLocationDetailsComponent },
     { path: 'app-sprint-planning', component: SprintPlanningComponent},
-    { path: 'app-sprint-details', component: SprintDetailsComponent}
+    { path: 'app-sprint-details', component: SprintDetailsComponent},
+    { path: 'app-login', component: LoginComponent}
 ];

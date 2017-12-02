@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent,
-  SprintPlanningComponent, SprintDetailsComponent } from './index';
+  SprintPlanningComponent, SprintDetailsComponent, LoginComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -14,12 +14,14 @@ import {ScheduleModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
   CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule, SharedModule,
-   InputTextareaModule, DropdownModule, SelectButtonModule, ToggleButtonModule, SliderModule, TooltipModule } from 'primeng/primeng';
+   InputTextareaModule, DropdownModule, SelectButtonModule, ToggleButtonModule, SliderModule,
+   TooltipModule, PasswordModule, GrowlModule } from 'primeng/primeng';
 import { MemberService } from './service/member.services';
 import { JarLocationService } from './service/jar-location.service';
 import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
 import { SprintPlanningService } from './service/sprint-planning.service';
 import { SprintDetailsService } from './service/sprint-details.service';
+import { LoginService } from './service/login.service';
 
 @NgModule({
   imports: [
@@ -45,6 +47,8 @@ import { SprintDetailsService } from './service/sprint-details.service';
     ToggleButtonModule,
     TooltipModule,
     SliderModule,
+    PasswordModule,
+    GrowlModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [
@@ -57,7 +61,8 @@ import { SprintDetailsService } from './service/sprint-details.service';
     MemberComponent,
     JarLocationDetailsComponent,
     SprintPlanningComponent,
-    SprintDetailsComponent
+    SprintDetailsComponent,
+    LoginComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -65,7 +70,8 @@ import { SprintDetailsService } from './service/sprint-details.service';
     MemberService,
     JarLocationService,
     SprintPlanningService,
-    SprintDetailsService
+    SprintDetailsService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
