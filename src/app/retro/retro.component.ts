@@ -76,7 +76,6 @@ export class RetroComponent implements OnInit {
            ssl:		true
         });
 
-        console.log('server', server);
         const message	= {
            text:	'i hope this works',
            from:	'darshansasdasd@gmail.com',

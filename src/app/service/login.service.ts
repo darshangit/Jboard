@@ -10,6 +10,7 @@ export class LoginService {
 
     isUserAuthenticated = false;
     userName: string;
+    accessRoutes: string[];
 
     constructor(private http: Http, private router: Router) { }
 
@@ -22,8 +23,13 @@ export class LoginService {
         }).catch(this.handleError);
     }
 
-    private handleError(error: Response) {
-        return Observable.throw(error.statusText);
+    getAccessControlList(name: string): Observable<string[]> {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const requestop = new RequestOptions({ headers });
+
+        return this.http.get('/jboard/accesscontrol/' + name).map((response: Response) => {
+            return response.json() as string[];
+        }).catch(this.handleError);
     }
 
     setValidUser(userName) {
@@ -39,10 +45,22 @@ export class LoginService {
         return this.userName;
     }
 
+    setRoutes(accessRoutes: string[]) {
+        this.accessRoutes = accessRoutes;
+    }
+
+    getRoutes(routeName: string): boolean {
+        return this.accessRoutes.includes(routeName);
+    }
+
     signOut() {
         this.userName = null;
         this.isUserAuthenticated = false;
+        this.accessRoutes = null;
         this.router.navigate(['/app-login']);
     }
 
+    private handleError(error: Response) {
+        return Observable.throw(error.statusText);
+    }
 }

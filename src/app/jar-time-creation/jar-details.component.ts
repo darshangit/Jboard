@@ -54,8 +54,6 @@ export class JarLocationDetailsComponent implements OnInit {
     getClass(jar: JarLocationModel): string {
         let className = 'btn-success';
 
-        console.log('asd', jar) ;
-
         if (jar.daysDifference >= 2 && jar.daysDifference < 5) {
             className =  'btn-warning';
         }else if (jar.daysDifference > 5) {

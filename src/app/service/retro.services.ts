@@ -48,7 +48,6 @@ export class RetroService {
         const requestop = new RequestOptions({ headers });
 
         leaveTrainings.loginName = this.loginService.getUserName();
-        console.log('saveLeavesAndTrainingssaveLeavesAndTrainingssaveLeavesAndTrainings', leaveTrainings);
 
         return this.http.post('/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop).map((response: Response) => {
             return response.json() as LeavesAndTrainings[];

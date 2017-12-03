@@ -2,20 +2,20 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" *ngIf="!login.getIsValidUser()">JBoard</a>
-        <a class="navbar-brand" *ngIf="login.getIsValidUser()" [routerLink]="['/app-ltcalendar']">JBoard</a>
+        <a class="navbar-brand" *ngIf="login.getIsValidUser()" [routerLink]="['/app-ltcalendar']">JBoard - {{login.getUserName()}}</a>
       </div>
 
       <ul class="nav navbar-nav pull-right myNavFont">
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-sprint-details']">Sprint Addition</a></li>
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-sprint-planning']">Sprint Planning</a></li>
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-member']">Member</a></li>
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-retro']">Retro</a></li>
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-ltcalendar']">Leaves-Trainings</a></li>
-        <li *ngIf="login.getIsValidUser()"><a  [routerLink]="['/app-jarlocationdetails']">Deployment Status</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-sprint-details')"><a  [routerLink]="['/app-sprint-details']">Sprint Addition</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-sprint-planning')"><a  [routerLink]="['/app-sprint-planning']">Sprint Planning</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-member')"><a  [routerLink]="['/app-member']">Member</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-retro')"><a  [routerLink]="['/app-retro']">Retro</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-ltcalendar')"><a  [routerLink]="['/app-ltcalendar']">Leaves-Trainings</a></li>
+        <li *ngIf="login.getIsValidUser() && login.getRoutes('app-jarlocationdetails')"><a  [routerLink]="['/app-jarlocationdetails']">Deployment Status</a></li>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <span *ngIf="login.getIsValidUser()" class="fa fa-user-secret fa-2x myUser"></span></a>
               <ul class="dropdown-menu myDropdown">
-                  <li><a><span class="capitalize glyphicon glyphicon-user"> Hi,{{login.getUserName()}}</span></a></li>
+                  <li><a><span class="capitalize glyphicon glyphicon-user">Hi,{{login.getUserName()}}</span></a></li>
                   <li><a (click)="login.signOut()"><span class="capitalize glyphicon glyphicon-log-out"></span> Sign Out</a></li>
               </ul>
       </ul>

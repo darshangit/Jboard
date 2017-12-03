@@ -22,6 +22,7 @@ import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.com
 import { SprintPlanningService } from './service/sprint-planning.service';
 import { SprintDetailsService } from './service/sprint-details.service';
 import { LoginService } from './service/login.service';
+import { AccessControlService } from './service/access-control.service';
 
 @NgModule({
   imports: [
@@ -71,7 +72,8 @@ import { LoginService } from './service/login.service';
     JarLocationService,
     SprintPlanningService,
     SprintDetailsService,
-    LoginService
+    LoginService,
+    AccessControlService
   ],
   bootstrap: [AppComponent]
 })
