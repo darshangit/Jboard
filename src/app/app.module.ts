@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent,
-  SprintPlanningComponent, SprintDetailsComponent, LoginComponent } from './index';
+  SprintPlanningComponent, SprintDetailsComponent, LoginComponent, PairProgramComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
   CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule, SharedModule,
    InputTextareaModule, DropdownModule, SelectButtonModule, ToggleButtonModule, SliderModule,
-   TooltipModule, PasswordModule, GrowlModule } from 'primeng/primeng';
+   TooltipModule, PasswordModule, GrowlModule, PickListModule } from 'primeng/primeng';
 import { MemberService } from './service/member.services';
 import { JarLocationService } from './service/jar-location.service';
 import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
@@ -50,6 +50,7 @@ import { AccessControlService } from './service/access-control.service';
     SliderModule,
     PasswordModule,
     GrowlModule,
+    PickListModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [
@@ -63,7 +64,8 @@ import { AccessControlService } from './service/access-control.service';
     JarLocationDetailsComponent,
     SprintPlanningComponent,
     SprintDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    PairProgramComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

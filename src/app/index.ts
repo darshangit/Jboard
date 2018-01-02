@@ -7,3 +7,4 @@ export * from './jar-time-creation/jar-details.component';
 export * from './sprint-planning/sprint-planning.component';
 export * from './sprint-details/sprint-details.component';
 export * from './login/login.component';
+export * from './pair-program/pair-program.component';

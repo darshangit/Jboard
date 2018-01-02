@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <h1>Pair Program</h1>
+
+    <p-pickList [source]="totalNumberOfNumbers" [target]="membersAlreadypairProgrammed" sourceHeader="Developers" targetHeader="Pair-Programmers"
+        [responsive]="true" dragdrop="true" dragdropScope="totalNumberOfNumbers" sourceFilterPlaceholder="Search Name"
+        targetFilterPlaceholder="Search Name" [sourceStyle]="{'height':'350px'}" [targetStyle]="{'height':'350px'}" [showSourceControls]="false"
+        [showTargetControls]="false" (onMoveToTarget)="hello($event)">
+        <ng-template let-members pTemplate="item">
+            <div class="ui-helper-clearfix">
+                <div style="font-size:14px;margin:15px 5px 0 0">{{members}}</div>
+            </div>
+        </ng-template>
+    </p-pickList>
+</div>
