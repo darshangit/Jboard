@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../service/member.services';
 import { MemberModel } from '../model/member.model';
+import { PairProgrammingService } from '../service/pair-programming.service';
+import * as _ from 'lodash';
+import { PairProgramModel } from '../model/pair-programming.model';
+import { $, element } from 'protractor';
 
 @Component({
     selector: 'app-pair-programming',
@@ -10,25 +14,62 @@ export class PairProgramComponent implements OnInit {
 
     membersFromService: MemberModel[];
     totalNumberOfNumbers: string[] = [];
-    membersAlreadypairProgrammed: string[] = ['ADASH', 'CDASH'];
+    membersAlreadypairProgrammed: string[] = [];
 
-    constructor(private memberService: MemberService) {
-
+    constructor(private memberService: MemberService,
+        private pairProgramService: PairProgrammingService) {
     }
 
     ngOnInit(): void {
-        this.memberService.getAllMembers().subscribe(resp => {
-            this.membersFromService = resp;
-            this.membersFromService.forEach(element => {
-                console.log('this.element', element);
-                this.totalNumberOfNumbers.push(element.memberName);
+
+        this.pairProgramService.getCurrentPairProgrammers().subscribe(pairProgrammers => {
+            pairProgrammers.forEach(entity => {
+                this.membersAlreadypairProgrammed.push(entity.memberName);
             });
-            console.log('this.element',  this.totalNumberOfNumbers);
+            this.memberService.getAllMembers().subscribe(resp => {
+                this.membersFromService = resp;
+                this.membersFromService.forEach(element => {
+                    this.totalNumberOfNumbers.push(element.memberName);
+                    this.totalNumberOfNumbers = _.difference(this.totalNumberOfNumbers, this.membersAlreadypairProgrammed);
+                });
+            });
 
         });
     }
 
-    hello(event: any) {
-        console.log('hiii');
+    moveToTarget(event: any) {
+        const requestModel: PairProgramModel[] = [];
+
+        this.membersAlreadypairProgrammed.forEach(element => {
+            const pairProgramEntity: PairProgramModel = {
+                memberName: element
+            };
+            requestModel.push(pairProgramEntity);
+        });
+        this.pairProgramService.savePairProgrammers(requestModel).subscribe(pairProgrammers => {
+            this.membersAlreadypairProgrammed = [];
+            pairProgrammers.forEach(entity => {
+                this.membersAlreadypairProgrammed.push(entity.memberName);
+            });
+            this.totalNumberOfNumbers = [];
+            this.membersFromService.forEach(element => {
+                this.totalNumberOfNumbers.push(element.memberName);
+                this.totalNumberOfNumbers = _.difference(this.totalNumberOfNumbers, this.membersAlreadypairProgrammed);
+            });
+        });
+    }
+
+    resetAll(event: any) {
+        this.pairProgramService.deletePairProgrammers().subscribe(element => {
+            this.membersAlreadypairProgrammed = [];
+            this.totalNumberOfNumbers = [];
+            this.membersFromService.forEach(memberFromService => {
+                this.totalNumberOfNumbers.push(memberFromService.memberName);
+            });
+        });
+    }
+
+    moveToSource(event: any) {
+        this.moveToTarget(event);
     }
 }

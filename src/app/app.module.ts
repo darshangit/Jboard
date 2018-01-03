@@ -23,6 +23,7 @@ import { SprintPlanningService } from './service/sprint-planning.service';
 import { SprintDetailsService } from './service/sprint-details.service';
 import { LoginService } from './service/login.service';
 import { AccessControlService } from './service/access-control.service';
+import { PairProgrammingService } from './service/pair-programming.service';
 
 @NgModule({
   imports: [
@@ -75,7 +76,8 @@ import { AccessControlService } from './service/access-control.service';
     SprintPlanningService,
     SprintDetailsService,
     LoginService,
-    AccessControlService
+    AccessControlService,
+    PairProgrammingService
   ],
   bootstrap: [AppComponent]
 })
