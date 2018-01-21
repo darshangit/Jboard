@@ -1,6 +1,6 @@
 {
     "/jboard": {
-        "target": "http://localhost:7071",
-        "secure": false
+        "target": "https://jboard-services.herokuapp.com:443",
+        "secure": true
     } 
 }
