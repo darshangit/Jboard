@@ -4,7 +4,6 @@ import { MemberModel } from '../model/member.model';
 import { PairProgrammingService } from '../service/pair-programming.service';
 import * as _ from 'lodash';
 import { PairProgramModel } from '../model/pair-programming.model';
-import { $, element } from 'protractor';
 
 @Component({
     selector: 'app-pair-programming',
