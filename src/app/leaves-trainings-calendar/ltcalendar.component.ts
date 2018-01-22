@@ -79,7 +79,7 @@ export class LTCalendarComponent implements OnInit {
         const index: number = this.findEventIndexById(e.calEvent.id);
         if (index >= 0) {
             this.event = this.events[index];
-            this.event.end = moment(this.event.end).add(-1, 'd').toDate();
+            // this.event.end = moment(this.event.end).add(-1, 'd').toDate();
         } else {
             // this.event = new MyEvent();
             // this.event.title = e.calEvent.title;

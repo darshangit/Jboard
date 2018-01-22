@@ -71,7 +71,7 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get(HEROKU_API_URL + 'jboard/leaves/deleteLeaveAndTraining/' + uuid + '/' + this.loginService.getUserName())
+        return this.http.get(HEROKU_API_URL + '/jboard/leaves/deleteLeaveAndTraining/' + uuid + '/' + this.loginService.getUserName())
         .map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
