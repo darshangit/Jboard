@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Login } from '../model/login.model';
 import { Router } from '@angular/router';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +19,7 @@ export class LoginService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.post('/jboard/login/authenticate', JSON.stringify(login), requestop).map((response: Response) => {
+        return this.http.post(HEROKU_API_URL + '/jboard/login/authenticate', JSON.stringify(login), requestop).map((response: Response) => {
             return response.json() as boolean;
         }).catch(this.handleError);
     }
@@ -27,7 +28,7 @@ export class LoginService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/accesscontrol/' + name).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/accesscontrol/' + name).map((response: Response) => {
             return response.json() as string[];
         }).catch(this.handleError);
     }

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { SprintPlanningModel } from '../model/sprint-planning.model';
 import 'rxjs/Rx';
 import { LoginService } from './login.service';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class SprintPlanningService {
@@ -17,7 +18,8 @@ export class SprintPlanningService {
 
         sprintPlanningModel.loginName = this.loginService.getUserName();
 
-        return this.http.post('/jboard/planning/save', JSON.stringify(sprintPlanningModel), requestop).map((response: Response) => {
+        return this.http.post(HEROKU_API_URL + '/jboard/planning/save', JSON.stringify(sprintPlanningModel), requestop)
+        .map((response: Response) => {
             return response.json() as SprintPlanningModel[];
         }).catch(this.handleError);
     }
@@ -26,7 +28,8 @@ export class SprintPlanningService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/planning/' + sprintNo + '/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/planning/' + sprintNo + '/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as SprintPlanningModel[];
         }).catch(this.handleError);
     }
@@ -35,7 +38,8 @@ export class SprintPlanningService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/planning/' + planningModelUUID + '/' + sprintNo + '/' + this.loginService.getUserName())
+        return this.http.get(HEROKU_API_URL + '/jboard/planning/' + planningModelUUID + '/' + sprintNo + '/' +
+        this.loginService.getUserName())
         .map((response: Response) => {
             return response.json() as SprintPlanningModel[];
         }).catch(this.handleError);

@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class AccessControlService {
@@ -15,7 +16,7 @@ export class AccessControlService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/accesscontrol/' + name).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/accesscontrol/' + name).map((response: Response) => {
             return response.json() as string[];
         }).catch(this.handleError);
     }

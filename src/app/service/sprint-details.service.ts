@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { SprintDetailsModel } from '../model/sprint-details.model';
 import { LoginService } from './login.service';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class SprintDetailsService {
@@ -14,7 +15,8 @@ export class SprintDetailsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/sprintDetails/add/' + sprintNo + '/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/sprintDetails/add/' + sprintNo + '/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as SprintDetailsModel[];
         }).catch(this.handleError);
     }
@@ -23,7 +25,7 @@ export class SprintDetailsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/sprintDetails/current/' + sprintNo + '/' + this.loginService.getUserName())
+        return this.http.get(HEROKU_API_URL + '/jboard/sprintDetails/current/' + sprintNo + '/' + this.loginService.getUserName())
         .map((response: Response) => {
             return response.json() as SprintDetailsModel[];
         }).catch(this.handleError);
@@ -33,7 +35,7 @@ export class SprintDetailsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/sprintDetails/delete/' + sprintNo + '/' + this.loginService.getUserName())
+        return this.http.get(HEROKU_API_URL + '/jboard/sprintDetails/delete/' + sprintNo + '/' + this.loginService.getUserName())
         .map((response: Response) => {
             return response.json() as SprintDetailsModel[];
         }).catch(this.handleError);
@@ -43,7 +45,8 @@ export class SprintDetailsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/sprintDetails/getAll/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/sprintDetails/getAll/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as SprintDetailsModel[];
         }).catch(this.handleError);
     }
@@ -52,7 +55,8 @@ export class SprintDetailsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/sprintDetails/getCurrentSprint/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/sprintDetails/getCurrentSprint/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as SprintDetailsModel;
         }).catch(this.handleError);
     }

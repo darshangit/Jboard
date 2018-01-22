@@ -7,6 +7,7 @@ import { RetroModel } from '../model/retro.model';
 import { LeavesAndTrainings } from '../model/leavesTrainings.model';
 import { Holidays } from '../model/holiday.model';
 import { LoginService } from './login.service';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class RetroService {
@@ -19,7 +20,7 @@ export class RetroService {
 
         retroModel.loginName = this.loginService.getUserName();
 
-        return this.http.post('/jboard/retro/save', JSON.stringify(retroModel), requestop).map((response: Response) => {
+        return this.http.post(HEROKU_API_URL + '/jboard/retro/save', JSON.stringify(retroModel), requestop).map((response: Response) => {
             return response.json() as boolean;
         });
     }
@@ -28,7 +29,7 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/retro/getHistory/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/retro/getHistory/' + this.loginService.getUserName()).map((response: Response) => {
             return response.json() as RetroModel[];
         }).catch(this.handleError);
     }
@@ -37,7 +38,8 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/retro/delete/' + sprintUUID + '/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/retro/delete/' + sprintUUID + '/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as RetroModel[];
         }).catch(this.handleError);
     }
@@ -49,7 +51,8 @@ export class RetroService {
 
         leaveTrainings.loginName = this.loginService.getUserName();
 
-        return this.http.post('/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop).map((response: Response) => {
+        return this.http.post(HEROKU_API_URL + '/jboard/leaves/save', JSON.stringify(leaveTrainings), requestop)
+        .map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
     }
@@ -58,7 +61,8 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/leaves/getLeavesAndTrainings/' + this.loginService.getUserName()).map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/leaves/getLeavesAndTrainings/' + this.loginService.getUserName())
+        .map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
     }
@@ -67,7 +71,7 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('jboard/leaves/deleteLeaveAndTraining/' + uuid + '/' + this.loginService.getUserName())
+        return this.http.get(HEROKU_API_URL + 'jboard/leaves/deleteLeaveAndTraining/' + uuid + '/' + this.loginService.getUserName())
         .map((response: Response) => {
             return response.json() as LeavesAndTrainings[];
         }).catch(this.handleError);
@@ -77,7 +81,7 @@ export class RetroService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/holidays/getall').map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/holidays/getall').map((response: Response) => {
             return response.json() as Holidays[];
         }).catch(this.handleError);
     }

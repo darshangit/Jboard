@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
 import { JarWrapperModel } from '../model/ja-wrapper.model';
+import { HEROKU_API_URL } from './endpoint.constant';
 
 @Injectable()
 export class JarLocationService {
@@ -14,7 +15,7 @@ export class JarLocationService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const requestop = new RequestOptions({ headers });
 
-        return this.http.get('/jboard/environment/getDetails').map((response: Response) => {
+        return this.http.get(HEROKU_API_URL + '/jboard/environment/getDetails').map((response: Response) => {
             return response.json() as JarWrapperModel;
         }).catch(this.handleError);
     }
