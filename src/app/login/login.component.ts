@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
                     this.accessRoutes = resp;
                     this.loginService.setRoutes(this.accessRoutes);
                     this.loginService.setValidUser(login.userName);
+                    this.router.navigate(['/app-retro']);
                 });
-                this.router.navigate(['/app-retro']);
             } else {
                 this.msgs.push({ severity: 'error', summary: 'Oh Oh', detail: 'Invalid Credentials' });
             }
