@@ -4,7 +4,7 @@
   "license": "@DashSatya",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js --proxy-config proxy.conf.json",
+    "start": "node server.js --proxy-config=proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
