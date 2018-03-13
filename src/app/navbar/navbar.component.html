@@ -6,6 +6,7 @@
       </div>
 
       <ul class="nav navbar-nav pull-right myNavFont">
+        <li><a  [routerLink]="['/app-scrum-attendance']">Scrum</a></li>
         <li *ngIf="login.getIsValidUser() && login.getRoutes('app-pair-programming')"><a  [routerLink]="['/app-pair-programming']">Pair Program</a></li>
         <li *ngIf="login.getIsValidUser() && login.getRoutes('app-sprint-details')"><a  [routerLink]="['/app-sprint-details']">Sprint Addition</a></li>
         <li *ngIf="login.getIsValidUser() && login.getRoutes('app-sprint-planning')"><a  [routerLink]="['/app-sprint-planning']">Sprint Planning</a></li>

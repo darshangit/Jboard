@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppNavBarComponent } from './navbar/navbar.component';
 import { appRoutes } from './routes';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent, MemberComponent,
-  SprintPlanningComponent, SprintDetailsComponent, LoginComponent, PairProgramComponent } from './index';
+  SprintPlanningComponent, SprintDetailsComponent, LoginComponent, PairProgramComponent, ScrumComponent } from './index';
 import { RetroHistoryComponent } from './retro-history/retro-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RetroService } from './service/retro.services';
@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule, DataTableModule, ButtonModule, DialogModule, CalendarModule,
   CheckboxModule, TabViewModule, CodeHighlighterModule, DataGridModule, SharedModule,
    InputTextareaModule, DropdownModule, SelectButtonModule, ToggleButtonModule, SliderModule,
-   TooltipModule, PasswordModule, GrowlModule, PickListModule } from 'primeng/primeng';
+   TooltipModule, PasswordModule, GrowlModule, PickListModule, ChartModule } from 'primeng/primeng';
 import { MemberService } from './service/member.services';
 import { JarLocationService } from './service/jar-location.service';
 import { JarLocationDetailsComponent } from './jar-time-creation/jar-details.component';
@@ -52,6 +52,7 @@ import { PairProgrammingService } from './service/pair-programming.service';
     PasswordModule,
     GrowlModule,
     PickListModule,
+    ChartModule,
     RouterModule.forRoot(appRoutes)
  ],
   declarations: [
@@ -66,7 +67,8 @@ import { PairProgrammingService } from './service/pair-programming.service';
     SprintPlanningComponent,
     SprintDetailsComponent,
     LoginComponent,
-    PairProgramComponent
+    PairProgramComponent,
+    ScrumComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

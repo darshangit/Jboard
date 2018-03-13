@@ -8,3 +8,4 @@ export * from './sprint-planning/sprint-planning.component';
 export * from './sprint-details/sprint-details.component';
 export * from './login/login.component';
 export * from './pair-program/pair-program.component';
+export * from './scrum-attendance/scrum.component';

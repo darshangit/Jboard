@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { RetroComponent, LeavesTrainingComponent, LTCalendarComponent,
-    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent, 
-    SprintDetailsComponent, LoginComponent, PairProgramComponent } from './index';
+    MemberComponent, JarLocationDetailsComponent, SprintPlanningComponent,
+    SprintDetailsComponent, LoginComponent, PairProgramComponent, ScrumComponent } from './index';
 
 
 export const appRoutes: Routes = [
@@ -14,5 +14,6 @@ export const appRoutes: Routes = [
     { path: 'app-sprint-planning', component: SprintPlanningComponent},
     { path: 'app-sprint-details', component: SprintDetailsComponent},
     { path: 'app-login', component: LoginComponent},
-    { path: 'app-pair-programming', component: PairProgramComponent}
+    { path: 'app-pair-programming', component: PairProgramComponent},
+    { path: 'app-scrum-attendance', component: ScrumComponent}
 ];
