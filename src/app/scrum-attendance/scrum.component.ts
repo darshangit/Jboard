@@ -22,8 +22,13 @@ export class ScrumComponent {
     isFT1Disabled = false;
     isFT2Disabled = false;
 
+    monthSelected: string;
+
+    monthsDropdown = [];
+
     constructor() {
         this.initialLoad(this.getNoOfDays());
+        this.loadMonthsDropdown();
     }
 
     initialLoad(noOfDaysInThisMonth): any {
@@ -88,6 +93,24 @@ export class ScrumComponent {
     thisDay() {
         this.today = moment().date();
         this.todayDate = moment().format('LL');
+        this.loadMonthsDropdown();
+        this.monthSelected = null;
         this.initialLoad(this.getNoOfDays());
+    }
+
+    loadMonthsDropdown() {
+        const today = new Date();
+        this.monthsDropdown = [];
+
+        for (let index = 1; index <= 6; index++) {
+            const momentDate = moment(today);
+            momentDate.subtract(index, 'months');
+            const formatedDate = momentDate.format('MMM YY');
+            this.monthsDropdown.push(formatedDate);
+        }
+    }
+
+    monthSelection() {
+        console.log('this.monthSelected', this.monthSelected);
     }
 }
