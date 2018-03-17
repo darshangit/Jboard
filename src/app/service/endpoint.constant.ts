@@ -1,3 +1,3 @@
-export const HEROKU_API_URL = 'https://jboard-services.herokuapp.com';
-// export const HEROKU_API_URL = '';
+// export const HEROKU_API_URL = 'https://jboard-services.herokuapp.com';
+export const HEROKU_API_URL = 'http://localhost:7071';
 

@@ -24,6 +24,7 @@ import { SprintDetailsService } from './service/sprint-details.service';
 import { LoginService } from './service/login.service';
 import { AccessControlService } from './service/access-control.service';
 import { PairProgrammingService } from './service/pair-programming.service';
+import { ScrumAttendanceService } from './service/scrum-attendance.service';
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import { PairProgrammingService } from './service/pair-programming.service';
     SprintDetailsService,
     LoginService,
     AccessControlService,
-    PairProgrammingService
+    PairProgrammingService,
+    ScrumAttendanceService
   ],
   bootstrap: [AppComponent]
 })
