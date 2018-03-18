@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="col-md-9">
-                <h5 class="first">FT-1 (Gaurav): {{ft1Value}}</h5>
+                <h5 class="first">FT-1 [Gaurav]: {{ft1Value}}</h5>
                 <p-slider [(ngModel)]="ft1Value" [min]="0" [max]="7" [style]="{'width':'175px','height': '20px'}" [disabled]="isFT1Disabled"></p-slider>
             </div>
             <h3>
@@ -15,7 +15,9 @@
 
         <div class="col-md-1 col-md-offset-2">
             <button class="btn btn-primary pull-right" (click)="thisDay()">
-                <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> {{todayDate}}</button>
+                <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> Today <br>
+                {{todayDate}}
+            </button>
         </div>
 
         <div class="col-md-2">
@@ -31,7 +33,7 @@
 
         <div class="col-md-3 col-md-offset-1">
                 <div class="col-md-9">
-                    <h5 class="first">FT-2 (James): {{ft2Value}}</h5>
+                    <h5 class="first">FT-2 [James]: {{ft2Value}}</h5>
                     <p-slider [(ngModel)]="ft2Value" [min]="0" [max]="7" [style]="{'width':'175px','height': '20px'}" [disabled]="isFT2Disabled"></p-slider>
                 </div>
                 <h3>
